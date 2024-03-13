@@ -14,8 +14,7 @@ public class SkeletonAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.SetDashVelocityX(0);
-        attackTimer = enemyData.attackCD;
+        //enemy.SetVelocityX(0);
     }
     public override void Exit()
     {
@@ -26,7 +25,8 @@ public class SkeletonAttackState : EnemyState
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
-        enemy.SetDashVelocityX(0);
+        if(!enemy.isHurt)
+            enemy.SetVelocityX(0);
     }
     public override void AnimationFinishTrigger()
     {

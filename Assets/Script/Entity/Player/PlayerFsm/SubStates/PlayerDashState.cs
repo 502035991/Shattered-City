@@ -37,7 +37,7 @@ public class PlayerDashState : PlayerAbilityState
         }
         else
         {
-            player.SetDashVelocityX( playerData.dashVelocity * player.facingDirection);
+            player.SetVelocity(new Vector2(playerData.dashVelocity * player.facingDirection ,0));
         }
     }
 }

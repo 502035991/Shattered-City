@@ -8,7 +8,6 @@ public class EnemyState
     protected EnemyData enemyData;
     protected Enemy EnemyBase;
 
-    protected static float attackTimer;
     private string animName;
 
     public EnemyState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName)
@@ -28,7 +27,6 @@ public class EnemyState
     }
     public virtual void DoCheck()
     {
-        attackTimer -= Time.deltaTime;
     }
     public virtual void PhysicUpdate()
     {

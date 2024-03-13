@@ -11,5 +11,6 @@ public class EnemyAnimationTrigger : MonoBehaviour
         enemy = GetComponentInParent<Enemy>();
     }
 
-    public void EnemyNormalAttackCallBack() => enemy.AnimationTrigger();
+    private void EnemyNormalAttackCallBack() => enemy.AnimationTrigger();
+    private void EnemyNormalAttackGetPlayer() => enemy.AttackTarget();
 }

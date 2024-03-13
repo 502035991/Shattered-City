@@ -1,3 +1,6 @@
+
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,26 +10,30 @@ public class Entity : MonoBehaviour
     #region Components
     public Animator anim { get; private set; }
     public Rigidbody2D RB { get; private set; }
+    public EntityFX EntityFX { get; private set; }
     #endregion
-
 
     private Vector2 workSpace;
     public Vector2 currentVelocity { get; private set; }
-    public int facingDirection { get; private set; }
-
+    public int facingDirection { get; private set; }       
 
     [SerializeField]
     protected Transform groundCheck;
     [SerializeField]
     protected Transform wallCheck;
+    [SerializeField] 
+    protected Transform attackCheck;
     [SerializeField]
     protected BaseData entityData;
 
+    protected bool isEnemy = true;
+    public bool isHurt = false;
 
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         RB = GetComponent<Rigidbody2D>();
+        EntityFX = GetComponent<EntityFX>();
     }
     protected virtual void Start()
     {
@@ -67,9 +74,9 @@ public class Entity : MonoBehaviour
         RB.velocity = workSpace;
         currentVelocity = workSpace;
     }
-    public void SetDashVelocityX(float velocity)
+    public void SetVelocity(Vector2 velocity)
     {
-        workSpace.Set(velocity, 0);
+        workSpace = velocity;
         RB.velocity = workSpace;
         currentVelocity = workSpace;
     }
@@ -81,6 +88,32 @@ public class Entity : MonoBehaviour
             Filp();
         }
     }
+    #region Attack
+    public void AttackTarget()
+    {
+        Collider2D[] coll = Physics2D.OverlapCircleAll(attackCheck.position, entityData.attackCheckRadius);
+        foreach (var target in coll)
+        {
+            Entity targetEntity = target.GetComponent<Entity>();
+            if (targetEntity != null && targetEntity.isEnemy != isEnemy)
+                targetEntity.TakeDamage(facingDirection);
+        }
+    }
+    public virtual void TakeDamage(int knockBackDirection)
+    {
+        EntityFX.FlashFX().Forget();
+        if(!isHurt)
+            KnockBack(new Vector2(7 * knockBackDirection, 15), 10).Forget();
+    }
+    public async UniTask KnockBack(Vector2 direction, float magnitude)
+    {
+        SetVelocity(direction.normalized * magnitude);
+
+        isHurt = true;
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5f)); // 例如无敌持续时间        
+        isHurt = false;
+    }
+    #endregion
     internal void Filp()
     {
         facingDirection *= -1;

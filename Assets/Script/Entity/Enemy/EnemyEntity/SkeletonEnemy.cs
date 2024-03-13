@@ -30,6 +30,7 @@ public class SkeletonEnemy : Enemy
         Vector2 leftBoundary = playerCheck.position + Vector3.left * da.playerCheckLength;
         Vector2 rightBoundary = playerCheck.position + Vector3.right * da.playerCheckLength;
 
+        Gizmos.DrawWireSphere(attackCheck.position, entityData.attackCheckRadius);
         Gizmos.DrawLine(leftBoundary, rightBoundary);
     }
 }

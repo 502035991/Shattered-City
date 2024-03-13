@@ -5,6 +5,7 @@ public class SkeletonBattleState : SkeletonGroundedState
     public SkeletonBattleState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
     {
     }
+    private float attackTimer;
     public override void Enter()
     {
         base.Enter();
@@ -18,21 +19,26 @@ public class SkeletonBattleState : SkeletonGroundedState
         {
             enemy.SetFilp(hitResult.point.x < enemy.transform.position.x ? -1 : 1);
         }
+        attackTimer -= Time.deltaTime;
     }
 
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
 
-        if (IsAttackedToPlayer())
+        if (IsAttackedToPlayer() && !enemy.isHurt)
         {
-            enemy.SetDashVelocityX(0);
+            enemy.SetVelocityX(0);
             enemy.anim.SetBool("Move", false);
         }
-        else
+        else if (!enemy.isHurt)
         {
             enemy.SetVelocityX(enemy.facingDirection * enemyData.movementVelocity);
             enemy.anim.SetBool("Move", true);
+        }
+        else
+        {
+
         }
     }
 
@@ -43,9 +49,10 @@ public class SkeletonBattleState : SkeletonGroundedState
         {
             enemyStateMachine.ChangeState(enemy.idleState);
         }
-        else if (IsAttackedToPlayer()&& attackTimer < 0)
+        else if (IsAttackedToPlayer() && attackTimer < 0)
         {
             float value = Random.Range(0f, 1f);
+            attackTimer = enemyData.attackCD;
             enemyStateMachine.ChangeState(enemy.attackState ,value < enemyData.CriticalValue);
         }
     }

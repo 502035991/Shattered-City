@@ -24,6 +24,7 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
+        isEnemy = false;
         stateMachine = new PlayerStateMachine();
         playerData = (PlayerData)entityData;
 
@@ -61,10 +62,15 @@ public class Player : Entity
     {
         stateMachine.currentState.AnimationFinishTrigger();
     }
-/*    private void OnDrawGizmos()
+/*    public override void TakeDamage()
+    {
+        base.TakeDamage();
+    }*/
+    private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);
+        Gizmos.DrawWireSphere(attackCheck.position, entityData.attackCheckRadius);
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + entityData.wallCheckDistance, wallCheck.position.y));
-    }*/
+    }
 
 }

@@ -10,6 +10,7 @@ public class Enemy : Entity
     [SerializeField]
     protected Transform playerCheck;
 
+    public string curState;
     protected override void Awake()
     {
         base.Awake();
@@ -20,6 +21,8 @@ public class Enemy : Entity
     {
         base.Update();
         stateMachine.currentState.Update();
+
+        curState = stateMachine.currentState .ToString();
     }
     protected override void LateUpdate()
     {
