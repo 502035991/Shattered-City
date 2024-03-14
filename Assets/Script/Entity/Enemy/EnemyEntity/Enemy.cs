@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Entity
+public abstract class Enemy : Entity
 {    
     public EnemyStateMachine stateMachine {  get; private set; }
     protected EnemyData enemyData { get; private set; }
@@ -11,6 +11,7 @@ public class Enemy : Entity
     protected Transform playerCheck;
 
     public string curState;
+    #region CallBack
     protected override void Awake()
     {
         base.Awake();
@@ -32,8 +33,8 @@ public class Enemy : Entity
     {
         stateMachine.currentState.PhysicUpdate();
     }
+    #endregion
     #region Check
-
     public bool CheckIfPlayerToLine(out RaycastHit2D hitResult)
     {
         var hitLeft = Physics2D.Raycast(playerCheck.position, Vector3.left, enemyData.playerCheckLength, enemyData.layerToPlayer);
@@ -57,8 +58,6 @@ public class Enemy : Entity
             }
         }
     }
-
-
     public bool CheckIfPlayerToCircle()
     {
         return true;
@@ -69,4 +68,6 @@ public class Enemy : Entity
     {
         stateMachine.currentState.AnimationFinishTrigger();
     }
+    public abstract EnemyState GetStunnedState();
+
 }

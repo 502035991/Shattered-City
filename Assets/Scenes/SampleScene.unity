@@ -539,6 +539,7 @@ MonoBehaviour:
   attackCheck: {fileID: 617835025}
   entityData: {fileID: 11400000, guid: 860c7fe12cd394b4b9ff906d1181ded8, type: 2}
   isHurt: 0
+  isAttacking: 0
 --- !u!114 &849677994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2261,7 +2262,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2336,6 +2337,7 @@ MonoBehaviour:
   attackCheck: {fileID: 1978383219}
   entityData: {fileID: 11400000, guid: 8aa01a52ab6d5794581e51a3505bf6d2, type: 2}
   isHurt: 0
+  isAttacking: 0
   playerCheck: {fileID: 1992612886}
   curState: 
 --- !u!4 &2027627517

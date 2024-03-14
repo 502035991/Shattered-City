@@ -19,7 +19,7 @@ public class EnemyState
     }
     public virtual void Enter()
     {
-        Debug.Log("enter " + enemyStateMachine.currentState + "  " + animName );
+        //Debug.Log("enter " + enemyStateMachine.currentState + "  " + animName );
         EnemyBase.anim.SetBool(animName, true);
     }
     public virtual void Update()
@@ -27,13 +27,15 @@ public class EnemyState
     }
     public virtual void DoCheck()
     {
+        if (EnemyBase.isControlled)
+            enemyStateMachine.ChangeState(EnemyBase.GetStunnedState());
     }
     public virtual void PhysicUpdate()
     {
     }
     public virtual void Exit()
     {
-        Debug.Log("exit "+ enemyStateMachine.currentState +"  "+ animName);
+        //Debug.Log("exit "+ enemyStateMachine.currentState +"  "+ animName);
         EnemyBase.anim.SetBool(animName, false);
     }
     public virtual void AnimationFinishTrigger()

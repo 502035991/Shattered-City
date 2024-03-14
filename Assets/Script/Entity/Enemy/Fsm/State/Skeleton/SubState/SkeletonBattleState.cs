@@ -26,19 +26,15 @@ public class SkeletonBattleState : SkeletonGroundedState
     {
         base.PhysicUpdate();
 
-        if (IsAttackedToPlayer() && !enemy.isHurt)
+        if (IsAttackedToPlayer() && !enemy.isControlled)
         {
             enemy.SetVelocityX(0);
             enemy.anim.SetBool("Move", false);
         }
-        else if (!enemy.isHurt)
+        else if (!enemy.isControlled)
         {
             enemy.SetVelocityX(enemy.facingDirection * enemyData.movementVelocity);
             enemy.anim.SetBool("Move", true);
-        }
-        else
-        {
-
         }
     }
 
@@ -62,5 +58,11 @@ public class SkeletonBattleState : SkeletonGroundedState
         RaycastHit2D hitResult;
         enemy.CheckIfPlayerToLine(out hitResult);
         return (hitResult.point - new Vector2(enemy.transform.position.x, enemy.transform.position.y)).sqrMagnitude < enemyData.attackDistance;
+    }
+
+    public override void SetAdditionalData(object value)
+    {
+        if(value!= null)
+            attackTimer = 0f;
     }
 }

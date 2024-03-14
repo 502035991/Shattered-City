@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class SkeletonEnemy : Enemy
@@ -7,6 +8,7 @@ public class SkeletonEnemy : Enemy
     public SkeletonMoveState moveState { get; private set; }
     public SkeletonBattleState battleState { get; private set; }
     public SkeletonAttackState attackState { get; private set; }
+    public SkeletonStunnedState stunnedState { get; private set; }
 
     #endregion
 
@@ -16,7 +18,8 @@ public class SkeletonEnemy : Enemy
         idleState = new SkeletonIdleState(stateMachine,enemyData,this,"Idle");
         moveState = new SkeletonMoveState(stateMachine, enemyData, this, "Move");
         battleState = new SkeletonBattleState(stateMachine, enemyData, this, "Move");
-        attackState = new SkeletonAttackState(stateMachine, enemyData, this, "Attack");        
+        attackState = new SkeletonAttackState(stateMachine, enemyData, this, "Attack");
+        stunnedState = new SkeletonStunnedState(stateMachine, enemyData, this, "Stunned");
     }
 
     protected override void Start()
@@ -32,5 +35,16 @@ public class SkeletonEnemy : Enemy
 
         Gizmos.DrawWireSphere(attackCheck.position, entityData.attackCheckRadius);
         Gizmos.DrawLine(leftBoundary, rightBoundary);
+    }
+
+    public override EnemyState GetStunnedState()
+    {
+        return stunnedState;
+    }
+
+    public override UniTask KnockBack(Vector2 direction, float magnitude)
+    {
+        isControlled = false;
+        return base.KnockBack(direction, magnitude);
     }
 }
