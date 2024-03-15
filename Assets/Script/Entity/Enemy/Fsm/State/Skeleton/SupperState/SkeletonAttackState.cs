@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
@@ -16,6 +14,11 @@ public class SkeletonAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        float value = Random.Range(0f, 1f);
+        IsCritical = value < enemyData.CriticalValue;
+        if (IsCritical)
+            enemy.anim.SetTrigger("IsCritical");
     }
     public override void Exit()
     {
@@ -32,13 +35,6 @@ public class SkeletonAttackState : EnemyState
     {
         enemyStateMachine.ChangeState(enemy.battleState);
     }
-    public override void SetAdditionalData(object value)
-    {
-        IsCritical = (bool)value;
-        if (IsCritical)
-            enemy.anim.SetTrigger("IsCritical");
-    }
-
     public override void DoCheck()
     {
         base.DoCheck();
@@ -58,7 +54,7 @@ public class SkeletonAttackState : EnemyState
                     target.TakeDamage();
                     if (IsCritical)
                     {
-                        target.KnockBack(new Vector2(7 * -enemy.facingDirection, 10), 10).Forget();
+                        target.KnockBack(new Vector2(7 * -enemy.facingDirection, 10), 10).Forget();//÷¼÷Ã±©»÷
                     }
                 }
 

@@ -47,9 +47,8 @@ public class SkeletonBattleState : SkeletonGroundedState
         }
         else if (IsAttackedToPlayer() && attackTimer < 0)
         {
-            float value = Random.Range(0f, 1f);
             attackTimer = enemyData.attackCD;
-            enemyStateMachine.ChangeState(enemy.attackState ,value < enemyData.CriticalValue);
+            enemyStateMachine.ChangeState(enemy.attackState);
         }
     }
 

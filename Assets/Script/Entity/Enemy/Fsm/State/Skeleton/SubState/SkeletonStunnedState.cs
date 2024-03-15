@@ -16,4 +16,9 @@ public class SkeletonStunnedState : SkeletonGroundedState
             enemy.stateMachine.ChangeState(enemy.battleState , 0);
         }
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+    }
 }

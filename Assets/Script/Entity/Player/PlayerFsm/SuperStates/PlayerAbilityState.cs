@@ -7,7 +7,7 @@ public class PlayerAbilityState : PlayerState
     protected bool isAbilityDone;
 
     private bool isGrounded;
-    private bool isDashed;
+    protected bool isDash;
     public PlayerAbilityState(PlayerStateMachine stateMachine, PlayerData playerData, Player player, string animName) : base(stateMachine, playerData, player, animName)
     {
 
@@ -18,13 +18,13 @@ public class PlayerAbilityState : PlayerState
 
         isAbilityDone = false;
         isGrounded = player.CheckIfTouchingGround();
-        isDashed = player.inputHandler.isDash;
+        isDash = player.inputHandler.isDash;
     }
     public override void DoCheck()
     {
         base.DoCheck();
         isGrounded = player.CheckIfTouchingGround();
-        isDashed = player.inputHandler.isDash;
+        isDash = player.inputHandler.isDash;
     }
 
     public override void Exit()

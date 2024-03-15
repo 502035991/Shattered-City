@@ -10,7 +10,7 @@ public class Entity : MonoBehaviour
     #region Components
     public Animator anim { get; private set; }
     public Rigidbody2D RB { get; private set; }
-    public EntityFX EntityFX { get; private set; }
+    public EntityFX entityFX { get; private set; }
     #endregion
 
     private Vector2 workSpace;
@@ -34,7 +34,7 @@ public class Entity : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         RB = GetComponent<Rigidbody2D>();
-        EntityFX = GetComponent<EntityFX>();
+        entityFX = GetComponent<EntityFX>();
     }
     protected virtual void Start()
     {
@@ -92,7 +92,6 @@ public class Entity : MonoBehaviour
     #region Attack
     public Collider2D[] GetAttackTarget()
     {
-
         Collider2D[] coll = Physics2D.OverlapCircleAll(attackCheck.position, entityData.attackCheckRadius);
         return coll;
     }
@@ -103,7 +102,7 @@ public class Entity : MonoBehaviour
     public void UseAttackStatae() => isAttacking = false;
     public virtual void TakeDamage()
     {
-        EntityFX.FlashFX().Forget();
+        //entityFX.FlashFX().Forget();
     }
     public virtual async UniTask KnockBack(Vector2 direction, float magnitude)
     {
@@ -116,30 +115,6 @@ public class Entity : MonoBehaviour
             isControlled = false;
         }
     }
-    /*    public void AttackTarget()
-        {
-            Collider2D[] coll = Physics2D.OverlapCircleAll(attackCheck.position, entityData.attackCheckRadius);
-            foreach (var target in coll)
-            {
-                Entity targetEntity = target.GetComponent<Entity>();
-                if (targetEntity != null && targetEntity.isEnemy != isEnemy)
-                    targetEntity.TakeDamage(facingDirection);
-            }
-        }
-        public virtual void TakeDamage(int knockBackDirection)
-        {
-            EntityFX.FlashFX().Forget();
-            if(!isHurt)
-                KnockBack(new Vector2(7 * knockBackDirection, 15), 10).Forget();
-        }
-        public async UniTask KnockBack(Vector2 direction, float magnitude)
-        {
-            SetVelocity(direction.normalized * magnitude);
-
-            isHurt = true;
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5f)); // 例如无敌持续时间        
-            isHurt = false;
-        }*/
     #endregion
     internal void Filp()
     {

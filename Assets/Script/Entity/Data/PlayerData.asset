@@ -21,9 +21,9 @@ MonoBehaviour:
     m_Bits: 512
   jumpVelocity: 15
   wallSlideVelocity: 1
-  duration: 0.3
-  dashVelocity: 20
+  duration: 0.2
+  dashVelocity: 50
   attacckMovement:
   - {x: 8, y: 0}
   - {x: 8, y: 0}
-  - {x: 12, y: 0}
+  - {x: 30, y: 0}

@@ -13,31 +13,33 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Enter();
         timer = playerData.duration;
+        player.RB.gravityScale = 0;
     }
 
     public override void Exit()
     {
         base.Exit();
         player.inputHandler.UseDashInput();
+        player.RB.gravityScale = 3.5f;
         player.SetVelocityX(0);
     }
 
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
-    }
-
-    public override void Update()
-    {
-        base.Update();
-        timer -=Time.deltaTime;
-        if(timer < 0 )
+        if (timer < 0)
         {
             isAbilityDone = true;
         }
         else
         {
-            player.SetVelocity(new Vector2(playerData.dashVelocity * player.facingDirection ,0));
+            player.SetVelocity(new Vector2(playerData.dashVelocity * player.facingDirection, 0));
         }
+    }
+    public override void Update()
+    {
+        base.Update();
+        timer -=Time.deltaTime;
+
     }
 }

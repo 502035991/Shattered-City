@@ -18,7 +18,7 @@ public class Player : Entity
     public PlayerInAirState inAirState { get; private set; }
     public PlayerLandState landState { get; private set; }
     public PlayerWallSlideState wallSlideState { get; private set; }
-    public PlayerPrimaryAttackState playerPrimaryAttackState { get; private set; }
+    public PlayerAttackState playerPrimaryAttackState { get; private set; }
     #endregion
     #region CallBack
     protected override void Awake()
@@ -35,7 +35,7 @@ public class Player : Entity
         inAirState = new PlayerInAirState(stateMachine, playerData, this, "InAir");        
         landState = new PlayerLandState(stateMachine, playerData, this, "Land");
         wallSlideState = new PlayerWallSlideState(stateMachine, playerData, this, "WallSlide");
-        playerPrimaryAttackState = new PlayerPrimaryAttackState(stateMachine, playerData, this, "Attack");
+        playerPrimaryAttackState = new PlayerAttackState(stateMachine, playerData, this, "Attack");
     }
     protected override void Start()
     {
@@ -62,10 +62,6 @@ public class Player : Entity
     {
         stateMachine.currentState.AnimationFinishTrigger();
     }
-/*    public override void TakeDamage()
-    {
-        base.TakeDamage();
-    }*/
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);

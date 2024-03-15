@@ -20,6 +20,15 @@ public class EntityFX : MonoBehaviour
         sr.material = hitMat;
         await UniTask.Delay(200);
         sr.material = originalMat;
+        sr.color = Color.white;
     }
+    public void RedColotrBlink()
+    {
+        if (sr.color != Color.white)
+            sr.color = Color.white;
+        else
+            sr.color = Color.red;
+    }
+    public void CancleBlink() => sr.color = Color.white;
 
 }

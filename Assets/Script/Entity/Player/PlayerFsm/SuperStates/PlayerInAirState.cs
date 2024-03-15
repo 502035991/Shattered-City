@@ -9,6 +9,7 @@ public class PlayerInAirState : PlayerState
     private bool isGrounded;
     private bool isTouchingWall;
     private bool isDash;
+    private bool isAttack;
     public PlayerInAirState(PlayerStateMachine stateMachine, PlayerData playerData, Player player, string animName) : base(stateMachine, playerData, player, animName)
     {
     }
@@ -19,6 +20,8 @@ public class PlayerInAirState : PlayerState
         isGrounded = player.CheckIfTouchingGround();
         isTouchingWall = player.CheckIfTouchingWall();
         xInput = player.inputHandler.normInputX;
+        isDash = player.inputHandler.isDash;
+        isAttack = player.inputHandler.isAttack;
     }
 
     public override void Enter()
@@ -57,18 +60,18 @@ public class PlayerInAirState : PlayerState
         {
             stateMachine.ChangeState(player.wallSlideState);
         }
-        else
+        else if(isAttack)
         {
-            player.anim.SetFloat("yVelocity", player.currentVelocity.y);
+            //stateMachine.ChangeState(player.playerPrimaryAttackState);
         }
-
-
-        isDash = player.inputHandler.isDash;
-        if (isDash)
+        else if(isDash)
         {
             isDash = false;
             stateMachine.ChangeState(player.dashState);
         }
-
+        else
+        {
+            player.anim.SetFloat("yVelocity", player.currentVelocity.y);
+        }
     }
 }

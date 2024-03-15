@@ -22,16 +22,16 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void OnJumpInput(InputAction.CallbackContext context) 
     { 
-        if(context.started && !isDash)
+        if(context.started && !isDash &&!isAttack)
         {
             jumpInput = true;
         }
     }
     public void OnDashInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+         if (context.started && !isAttack && SkillManager.instance.dash.CanUseSkill())
         {
-             isDash = true;
+            isDash = true;
         }
     }
     public void OnNormalAttack(InputAction.CallbackContext context)
