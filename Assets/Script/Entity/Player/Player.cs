@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player : Entity
@@ -8,8 +9,8 @@ public class Player : Entity
     public static Player Instance;
     private PlayerData playerData;
     public PlayerInputHandler inputHandler { get; private set; }
-
     public PlayerStateMachine stateMachine {  get; private set; }
+    public SkillManager skill {  get; private set; }
     #region States
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
@@ -19,6 +20,9 @@ public class Player : Entity
     public PlayerLandState landState { get; private set; }
     public PlayerWallSlideState wallSlideState { get; private set; }
     public PlayerAttackState playerPrimaryAttackState { get; private set; }
+
+    //¼¼ÄÜ
+    public PlayerClongDashState ClongDashState { get; private set; }
     #endregion
     #region CallBack
     protected override void Awake()
@@ -36,12 +40,14 @@ public class Player : Entity
         landState = new PlayerLandState(stateMachine, playerData, this, "Land");
         wallSlideState = new PlayerWallSlideState(stateMachine, playerData, this, "WallSlide");
         playerPrimaryAttackState = new PlayerAttackState(stateMachine, playerData, this, "Attack");
+
+        ClongDashState = new PlayerClongDashState(stateMachine, playerData, this, "ClongDash");
     }
     protected override void Start()
     {
         base.Start();
         inputHandler = GetComponent<PlayerInputHandler>();
-
+        skill = SkillManager.instance;
         stateMachine.Initialize(idleState);
     }
     protected override void Update()

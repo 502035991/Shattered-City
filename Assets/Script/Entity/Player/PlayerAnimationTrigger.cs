@@ -9,7 +9,7 @@ public class PlayerAnimationTrigger : MonoBehaviour
     {
         player = GetComponentInParent<Player>();
     }
-    private void PlayerNormalAttackCallBack() => player.AnimationTrigger();
+    private void PlayerAnimationStoping() => player.AnimationTrigger();
     private void PlayerNormalAttackGetEnemy() => player.AttackTarget();
 
     

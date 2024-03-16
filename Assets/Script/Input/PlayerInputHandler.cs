@@ -13,6 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool jumpInput { get; private set; }
     public bool isDash {  get; private set; }
     public bool isAttack {  get; private set; }
+    public bool isClongDsah {  get; private set; }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
@@ -30,7 +31,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnDashInput(InputAction.CallbackContext context)
     {
          if (context.started && !isAttack && SkillManager.instance.dash.CanUseSkill())
-        {
+        { 
             isDash = true;
         }
     }
@@ -41,7 +42,18 @@ public class PlayerInputHandler : MonoBehaviour
             isAttack = true;
         }
     }
+    public void OnClongDash(InputAction.CallbackContext context)
+    {
+        if (context.started && !isDash && !isAttack)
+        {
+            isClongDsah = true;
+        }
+    }
+
+    public void ClearMovementInput() => movementInput = Vector2.zero;
+
     public void UseJumpInput() => jumpInput = false;
     public void UseDashInput() => isDash = false;
     public void UseAttackInput() => isAttack = false;
+    public void UseClongDashInput() => isClongDsah =false;
 }

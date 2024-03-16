@@ -268,7 +268,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35146838, y: 3.8687446, z: -10.28798}
+  m_LocalPosition: {x: -2.4814682, y: 3.6887445, z: -10.28798}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -526,7 +526,7 @@ Transform:
   m_GameObject: {fileID: 849677989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.23, y: 0, z: 0}
+  m_LocalPosition: {x: -3.36, y: -0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -707,6 +707,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 415220b5-80c3-4596-8ea5-3fd78171cfe7
     m_ActionName: 'GamePlay/NormalAttack[/Keyboard/x]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 849677995}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnClongDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8841fd47-1219-462c-a01c-971e520c5c1c
+    m_ActionName: 'GamePlay/Clong[/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: keyBoard
   m_DefaultActionMap: GamePlay
@@ -748,6 +764,7 @@ GameObject:
   - component: {fileID: 1032070263}
   - component: {fileID: 1032070264}
   - component: {fileID: 1032070265}
+  - component: {fileID: 1032070266}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -795,6 +812,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colldown: 1
+--- !u!114 &1032070266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032070262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26f1353c8d7194a91dff7c5abf52d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colldown: 3
+  clongPrefab: {fileID: 4160016897072510556, guid: 1c30cad40482ca94abba433be7e951c5, type: 3}
 --- !u!1 &1054523662
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +891,7 @@ Transform:
   m_GameObject: {fileID: 1054523662}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35146838, y: 3.8687446, z: -10.28798}
+  m_LocalPosition: {x: -2.4814682, y: 3.6887445, z: -10.28798}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -963,9 +994,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -215698771
+  m_SortingLayer: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1149,9 +1180,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 406225639
+  m_SortingLayer: 2
+  m_SortingOrder: -1
   m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2415,7 +2446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &2027627514
 Rigidbody2D:
   serializedVersion: 4

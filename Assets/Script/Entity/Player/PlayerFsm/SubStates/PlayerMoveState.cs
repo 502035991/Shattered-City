@@ -16,6 +16,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Exit()
     {
         base.Exit();
+        player.SetVelocityX(0);
     }
 
     public override void PhysicUpdate()

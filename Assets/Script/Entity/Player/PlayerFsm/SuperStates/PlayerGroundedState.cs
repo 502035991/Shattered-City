@@ -9,6 +9,7 @@ public class PlayerGroundedState : PlayerState
     private bool jumpInput;
     private bool isDash;
     private bool isAttack;
+    private bool isClongDash;
     public PlayerGroundedState(PlayerStateMachine stateMachine, PlayerData playerData, Player player, string animName) : base(stateMachine, playerData, player, animName)
     {
     }
@@ -33,6 +34,8 @@ public class PlayerGroundedState : PlayerState
         jumpInput = player.inputHandler.jumpInput;
         isDash = player.inputHandler.isDash;
         isAttack = player.inputHandler.isAttack;
+
+        isClongDash = player.inputHandler.isClongDsah;
     }
     public override void PhysicUpdate()    {
         base.PhysicUpdate();
@@ -46,6 +49,11 @@ public class PlayerGroundedState : PlayerState
         {
             isDash = false;
             stateMachine.ChangeState(player.dashState);
+        }
+        else if (isClongDash)
+        {
+            isClongDash = false;
+            stateMachine.ChangeState(player.ClongDashState);
         }
         else if(isAttack)
         {

@@ -22,6 +22,7 @@ public class DashSkill : Skill
             if (!isFirstDashed)
             {
                 isFirstDashed = true;
+                cooldownTimer = colldown;//技能基类CD重置，避免冲突
                 UseSkill();
                 return true;
             }
@@ -38,8 +39,6 @@ public class DashSkill : Skill
 
     public override async void UseSkill()
     {
-        cooldownTimer = colldown;
-
         await UniTask.WaitUntil(() => !PlayerManager.instance.player.inputHandler.isDash);
         await UniTask.Delay(400);
         // 如果此时没有再次按下 Dash 键，则进入冷却状态

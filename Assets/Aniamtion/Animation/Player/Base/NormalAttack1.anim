@@ -99,7 +99,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.35
-    functionName: PlayerNormalAttackCallBack
+    functionName: PlayerAnimationStoping
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
