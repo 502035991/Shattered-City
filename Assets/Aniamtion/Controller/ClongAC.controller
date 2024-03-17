@@ -35,7 +35,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ClongAttack
+    m_ConditionEvent: CloneAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -872756340364242591}
@@ -60,7 +60,7 @@ AnimatorController:
   m_Name: ClongAC
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: ClongAttack
+  - m_Name: CloneAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -90,10 +90,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -872756340364242591}
-    m_Position: {x: 560, y: 180, z: 0}
+    m_Position: {x: 600, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7678781089961386715}
-    m_Position: {x: 330, y: 100, z: 0}
+    m_Position: {x: 310, y: 140, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

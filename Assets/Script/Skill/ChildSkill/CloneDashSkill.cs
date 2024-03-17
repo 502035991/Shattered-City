@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class CloneDashSkill : Skill
 {
-    [SerializeField] private GameObject clongPrefab;
+    [SerializeField] private GameObject clonePrefab;
 
-    public void CreatClong(Transform playerTransform , int facingDirection) 
+    CloneDashSkillController newClone;
+    public void CreatClone(Transform playerTransform , int facingDirection) 
     {
-        GameObject newClong = Instantiate(clongPrefab);
-
-        newClong.GetComponent<ClongDashSkillController>().SetPosition(playerTransform , facingDirection);
+        newClone = Instantiate(clonePrefab).gameObject.GetComponent<CloneDashSkillController>();
+        newClone.SetPosition(playerTransform , facingDirection);
     }
+    public void ChangePositionToClone(Transform playerTransform)
+    {
+        if(newClone != null)
+        {
+            playerTransform.position = newClone.transform.position;            
+            newClone.DestroyObj();
+        }
+    }
+    public bool ObjStats()
+    {
+        return newClone != null;
+    }
+
 }

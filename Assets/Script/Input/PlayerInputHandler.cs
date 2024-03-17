@@ -13,7 +13,9 @@ public class PlayerInputHandler : MonoBehaviour
     public bool jumpInput { get; private set; }
     public bool isDash {  get; private set; }
     public bool isAttack {  get; private set; }
-    public bool isClongDsah {  get; private set; }
+
+    public bool isCloneDsah {  get; private set; }
+    public bool isCloneDashEnable {  get; private set; }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
@@ -42,11 +44,16 @@ public class PlayerInputHandler : MonoBehaviour
             isAttack = true;
         }
     }
-    public void OnClongDash(InputAction.CallbackContext context)
+    public void OnCloneDash(InputAction.CallbackContext context)
     {
-        if (context.started && !isDash && !isAttack)
+        if (context.started && !isDash && !isAttack && SkillManager.instance.cloneDash.CanUseSkill())
         {
-            isClongDsah = true;
+            isCloneDsah = true;
+            isCloneDashEnable = false;
+        }      
+        else if(context.started && SkillManager.instance.cloneDash.ObjStats())
+        {
+            isCloneDashEnable = true;
         }
     }
 
@@ -55,5 +62,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void UseJumpInput() => jumpInput = false;
     public void UseDashInput() => isDash = false;
     public void UseAttackInput() => isAttack = false;
-    public void UseClongDashInput() => isClongDsah =false;
+
+    public void UseCloneDashInput() => isCloneDsah =false;
+    public void UseCloneDashMoveInput() => isCloneDashEnable =false;
 }

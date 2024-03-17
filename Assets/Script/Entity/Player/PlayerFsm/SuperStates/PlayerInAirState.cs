@@ -8,9 +8,13 @@ public class PlayerInAirState : PlayerState
 
     private bool isGrounded;
     private bool isTouchingWall;
-    private bool isDash;
-    private bool isClongDash;
+    private bool isDash;   
     private bool isAttack;
+
+    private bool isCloneDash;
+    private bool isCloneDashEnable;
+
+
     public PlayerInAirState(PlayerStateMachine stateMachine, PlayerData playerData, Player player, string animName) : base(stateMachine, playerData, player, animName)
     {
     }
@@ -23,7 +27,9 @@ public class PlayerInAirState : PlayerState
         xInput = player.inputHandler.normInputX;
         isDash = player.inputHandler.isDash;
         isAttack = player.inputHandler.isAttack;
-        isClongDash = player.inputHandler.isClongDsah;
+
+        isCloneDash = player.inputHandler.isCloneDsah;
+        isCloneDashEnable = player.inputHandler.isCloneDashEnable;
 
     }
 
@@ -72,9 +78,9 @@ public class PlayerInAirState : PlayerState
             isDash = false;
             stateMachine.ChangeState(player.dashState);
         }
-        else if(isClongDash)
+        else if(isCloneDash || isCloneDashEnable)
         {
-            stateMachine.ChangeState(player.ClongDashState);
+            stateMachine.ChangeState(player.CloneDashState);
         }
         else
         {

@@ -22,7 +22,7 @@ public class Player : Entity
     public PlayerAttackState playerPrimaryAttackState { get; private set; }
 
     //¼¼ÄÜ
-    public PlayerClongDashState ClongDashState { get; private set; }
+    public PlayerCloneDashState CloneDashState { get; private set; }
     #endregion
     #region CallBack
     protected override void Awake()
@@ -41,7 +41,7 @@ public class Player : Entity
         wallSlideState = new PlayerWallSlideState(stateMachine, playerData, this, "WallSlide");
         playerPrimaryAttackState = new PlayerAttackState(stateMachine, playerData, this, "Attack");
 
-        ClongDashState = new PlayerClongDashState(stateMachine, playerData, this, "ClongDash");
+        CloneDashState = new PlayerCloneDashState(stateMachine, playerData, this, "CloneDash");
     }
     protected override void Start()
     {
@@ -75,4 +75,8 @@ public class Player : Entity
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + entityData.wallCheckDistance, wallCheck.position.y));
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
 }

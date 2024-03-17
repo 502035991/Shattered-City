@@ -9,7 +9,9 @@ public class PlayerGroundedState : PlayerState
     private bool jumpInput;
     private bool isDash;
     private bool isAttack;
-    private bool isClongDash;
+
+    private bool isCloneDash;
+    private bool isCloneDashEnable;
     public PlayerGroundedState(PlayerStateMachine stateMachine, PlayerData playerData, Player player, string animName) : base(stateMachine, playerData, player, animName)
     {
     }
@@ -21,6 +23,7 @@ public class PlayerGroundedState : PlayerState
         jumpInput = player.inputHandler.jumpInput;
         isDash = player.inputHandler.isDash;
         isAttack = player.inputHandler.isAttack;
+        isCloneDashEnable = player.inputHandler.isCloneDashEnable;
     }
 
     public override void Exit()
@@ -35,7 +38,8 @@ public class PlayerGroundedState : PlayerState
         isDash = player.inputHandler.isDash;
         isAttack = player.inputHandler.isAttack;
 
-        isClongDash = player.inputHandler.isClongDsah;
+        isCloneDash = player.inputHandler.isCloneDsah;
+        isCloneDashEnable = player.inputHandler.isCloneDashEnable;
     }
     public override void PhysicUpdate()    {
         base.PhysicUpdate();
@@ -50,10 +54,10 @@ public class PlayerGroundedState : PlayerState
             isDash = false;
             stateMachine.ChangeState(player.dashState);
         }
-        else if (isClongDash)
+        else if (isCloneDash || isCloneDashEnable)
         {
-            isClongDash = false;
-            stateMachine.ChangeState(player.ClongDashState);
+            isCloneDash = false;
+            stateMachine.ChangeState(player.CloneDashState);
         }
         else if(isAttack)
         {
