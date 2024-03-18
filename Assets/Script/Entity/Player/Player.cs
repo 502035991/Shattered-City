@@ -23,6 +23,7 @@ public class Player : Entity
 
     //¼¼ÄÜ
     public PlayerCloneDashState CloneDashState { get; private set; }
+    public PlayerTimeStopState timeStopState { get; private set; }
     #endregion
     #region CallBack
     protected override void Awake()
@@ -42,6 +43,7 @@ public class Player : Entity
         playerPrimaryAttackState = new PlayerAttackState(stateMachine, playerData, this, "Attack");
 
         CloneDashState = new PlayerCloneDashState(stateMachine, playerData, this, "CloneDash");
+        timeStopState = new PlayerTimeStopState(stateMachine, playerData, this, "TimeStop");
     }
     protected override void Start()
     {

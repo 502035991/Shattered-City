@@ -13,6 +13,7 @@ public class PlayerInAirState : PlayerState
 
     private bool isCloneDash;
     private bool isCloneDashEnable;
+    private bool isTimeStopEnable;
 
 
     public PlayerInAirState(PlayerStateMachine stateMachine, PlayerData playerData, Player player, string animName) : base(stateMachine, playerData, player, animName)
@@ -30,6 +31,7 @@ public class PlayerInAirState : PlayerState
 
         isCloneDash = player.inputHandler.isCloneDsah;
         isCloneDashEnable = player.inputHandler.isCloneDashEnable;
+        isTimeStopEnable = player.inputHandler.isTimeStopEnable;
 
     }
 
@@ -80,7 +82,14 @@ public class PlayerInAirState : PlayerState
         }
         else if(isCloneDash || isCloneDashEnable)
         {
+            isCloneDashEnable = false;
+            isCloneDash = false;
             stateMachine.ChangeState(player.CloneDashState);
+        }
+        else if (isTimeStopEnable)
+        {
+            isTimeStopEnable = false;
+            stateMachine.ChangeState(player.timeStopState ,bState.air);
         }
         else
         {

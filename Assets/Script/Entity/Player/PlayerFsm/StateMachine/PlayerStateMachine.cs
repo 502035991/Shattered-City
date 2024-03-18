@@ -11,10 +11,11 @@ public class PlayerStateMachine
         this.currentState = currentState;
         currentState.Enter();
     }
-    public void ChangeState(PlayerState newState)
+    public void ChangeState(PlayerState newState,object value = null)
     {
         currentState.Exit();
         currentState = newState;
+        currentState.SetAdditionalData(value);
         currentState.Enter();
     }
 }

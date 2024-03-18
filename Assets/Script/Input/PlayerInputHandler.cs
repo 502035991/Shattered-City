@@ -14,8 +14,10 @@ public class PlayerInputHandler : MonoBehaviour
     public bool isDash {  get; private set; }
     public bool isAttack {  get; private set; }
 
+    //技能
     public bool isCloneDsah {  get; private set; }
     public bool isCloneDashEnable {  get; private set; }
+    public bool isTimeStopEnable {  get; private set; }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
@@ -56,6 +58,18 @@ public class PlayerInputHandler : MonoBehaviour
             isCloneDashEnable = true;
         }
     }
+    public void OnTimeStop(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            isTimeStopEnable = true;
+        }
+        else if(context.canceled)
+        {
+            isTimeStopEnable = false;
+        }
+
+    }
 
     public void ClearMovementInput() => movementInput = Vector2.zero;
 
@@ -63,6 +77,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void UseDashInput() => isDash = false;
     public void UseAttackInput() => isAttack = false;
 
+    //技能
     public void UseCloneDashInput() => isCloneDsah =false;
     public void UseCloneDashMoveInput() => isCloneDashEnable =false;
 }

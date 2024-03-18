@@ -12,6 +12,7 @@ public class PlayerGroundedState : PlayerState
 
     private bool isCloneDash;
     private bool isCloneDashEnable;
+    private bool isTimeStopEnable;
     public PlayerGroundedState(PlayerStateMachine stateMachine, PlayerData playerData, Player player, string animName) : base(stateMachine, playerData, player, animName)
     {
     }
@@ -19,11 +20,6 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        xInput = player.inputHandler.normInputX;
-        jumpInput = player.inputHandler.jumpInput;
-        isDash = player.inputHandler.isDash;
-        isAttack = player.inputHandler.isAttack;
-        isCloneDashEnable = player.inputHandler.isCloneDashEnable;
     }
 
     public override void Exit()
@@ -40,6 +36,7 @@ public class PlayerGroundedState : PlayerState
 
         isCloneDash = player.inputHandler.isCloneDsah;
         isCloneDashEnable = player.inputHandler.isCloneDashEnable;
+        isTimeStopEnable = player.inputHandler.isTimeStopEnable;
     }
     public override void PhysicUpdate()    {
         base.PhysicUpdate();
@@ -49,6 +46,12 @@ public class PlayerGroundedState : PlayerState
             jumpInput = false;
             stateMachine.ChangeState(player.jumpState);
         }
+        else if (isAttack)
+        {
+            isAttack = false;
+            stateMachine.ChangeState(player.playerPrimaryAttackState);
+        }
+
         else if(isDash)
         {
             isDash = false;
@@ -57,12 +60,14 @@ public class PlayerGroundedState : PlayerState
         else if (isCloneDash || isCloneDashEnable)
         {
             isCloneDash = false;
+            isCloneDashEnable =false;
             stateMachine.ChangeState(player.CloneDashState);
         }
-        else if(isAttack)
+        else if(isTimeStopEnable)
         {
-            isAttack = false;
-            stateMachine.ChangeState(player.playerPrimaryAttackState);
+            isTimeStopEnable = false;
+            stateMachine.ChangeState(player.timeStopState,bState.ground);
         }
+
     }
 }
