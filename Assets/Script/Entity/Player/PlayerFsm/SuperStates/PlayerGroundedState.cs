@@ -49,7 +49,7 @@ public class PlayerGroundedState : PlayerState
         else if (isAttack)
         {
             isAttack = false;
-            stateMachine.ChangeState(player.playerPrimaryAttackState);
+            stateMachine.ChangeState(player.primaryAttackState);
         }
 
         else if(isDash)

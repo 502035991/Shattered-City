@@ -34,7 +34,7 @@ public class PlayerAttackState : PlayerAbilityState
     {
         if (player.isAttacking)
         {
-            player.UseAttackStatae();
+            player.UseAttackState();
             var coll = player.GetAttackTarget();
 
             if (coll == null)
@@ -45,17 +45,20 @@ public class PlayerAttackState : PlayerAbilityState
                 Enemy target = item.GetComponent<Enemy>();
                 if (target != null)
                 {
-                    target.TakeDamage();
+
                     if (normalAttackConter == 0)
                     {
+                        player.stats.DoDamage(target.stats ,1);
                         target.KnockBack(Vector2.zero, 0).Forget();//Íæ¼Ò¹¥»÷1
                     }
                     else if (normalAttackConter == 1)
                     {
+                        player.stats.DoDamage(target.stats ,3);
                         target.KnockBack(new Vector2(0, 10), 10).Forget();//Íæ¼Ò¹¥»÷2
                     }
                     else if (normalAttackConter == 2)
                     {
+                        player.stats.DoDamage(target.stats ,5);
                         target.KnockBack(new Vector2(7 * player.facingDirection, 15), 10).Forget();//Íæ¼Ò¹¥»÷3
                     }
                 }
@@ -72,7 +75,7 @@ public class PlayerAttackState : PlayerAbilityState
         await WaitForAnimationCompletion();
 
         normalAttackConter++;
-        while (currentTime - startTime < 0.6f)
+        while (currentTime - startTime < 0.45f)
         {
             currentTime = Time.time;
             if (player.inputHandler.isAttack)

@@ -6,29 +6,31 @@ public class EnemyState
 {
     protected EnemyStateMachine enemyStateMachine;
     protected EnemyData enemyData;
-    protected Enemy EnemyBase;
+    protected Enemy baseEnemy;
 
     private string animName;
+
+    protected bool isDead =false;
 
     public EnemyState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName)
     {
         this.enemyStateMachine = enemyStateMachine;
         this.enemyData = enemyData;
-        this.EnemyBase = enemy;
+        this.baseEnemy = enemy;
         this.animName = animName;
     }
     public virtual void Enter()
     {
         //Debug.Log("enter " + enemyStateMachine.currentState + "  " + animName );
-        EnemyBase.anim.SetBool(animName, true);
+        baseEnemy.anim.SetBool(animName, true);
     }
     public virtual void Update()
     {
     }
     public virtual void DoCheck()
     {
-        if (EnemyBase.isControlled)
-            enemyStateMachine.ChangeState(EnemyBase.GetStunnedState());
+        if (baseEnemy.isControlled && !isDead)
+            enemyStateMachine.ChangeState(baseEnemy.GetStunnedState());
     }
     public virtual void PhysicUpdate()
     {
@@ -36,7 +38,7 @@ public class EnemyState
     public virtual void Exit()
     {
         //Debug.Log("exit "+ enemyStateMachine.currentState +"  "+ animName);
-        EnemyBase.anim.SetBool(animName, false);
+        baseEnemy.anim.SetBool(animName, false);
     }
     public virtual void AnimationFinishTrigger()
     {

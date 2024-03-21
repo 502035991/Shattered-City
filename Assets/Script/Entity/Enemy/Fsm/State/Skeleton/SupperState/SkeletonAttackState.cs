@@ -8,7 +8,7 @@ public class SkeletonAttackState : EnemyState
     private bool IsCritical;
     public SkeletonAttackState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
     {
-        this.enemy = (SkeletonEnemy)EnemyBase;
+        this.enemy = (SkeletonEnemy)base.baseEnemy;
     }
 
     public override void Enter()
@@ -40,7 +40,7 @@ public class SkeletonAttackState : EnemyState
         base.DoCheck();
         if(enemy.isAttacking)
         {
-            enemy.UseAttackStatae();
+            enemy.UseAttackState();
             var coll = enemy.GetAttackTarget();
 
             if (coll == null)
@@ -51,11 +51,18 @@ public class SkeletonAttackState : EnemyState
                 Player target = item.GetComponent<Player>();
                 if (target != null)
                 {
-                    target.TakeDamage();
+/*                    target.TakeDamageEffect();
+                    target.stats.TakeDamage();*/
                     if (IsCritical)
                     {
+                        enemy.stats.DoDamage(target.stats, 5);
                         target.KnockBack(new Vector2(7 * -enemy.facingDirection, 10), 10).Forget();//÷¼÷Ã±©»÷
                     }
+                    else
+                    {
+                        enemy.stats.DoDamage(target.stats, 2);
+                    }
+                    return;
                 }
 
             }

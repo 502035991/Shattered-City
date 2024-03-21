@@ -11,8 +11,10 @@ public class PlayerInputHandler : MonoBehaviour
     public int normInputY {  get; private set; }
 
     public bool jumpInput { get; private set; }
+    public bool isAir {  get; private set; }
     public bool isDash {  get; private set; }
     public bool isAttack {  get; private set; }
+    public bool isAirAttack {  get; private set; }
 
     //技能
     public bool isCloneDsah {  get; private set; }
@@ -27,14 +29,14 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void OnJumpInput(InputAction.CallbackContext context) 
     { 
-        if(context.started && !isDash &&!isAttack)
+        if(context.started && !isDash &&!isAttack && !isAirAttack)
         {
             jumpInput = true;
         }
     }
     public void OnDashInput(InputAction.CallbackContext context)
     {
-         if (context.started && !isAttack && SkillManager.instance.dash.CanUseSkill())
+         if (context.started && !isAttack && !isAirAttack && SkillManager.instance.dash.CanUseSkill())
         { 
             isDash = true;
         }
@@ -43,12 +45,21 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started && !isDash)
         {
-            isAttack = true;
+            if(!isAir && !isAirAttack)
+            {
+                isAttack = true;
+                //地面上的攻击
+            }
+            else
+            {
+                isAirAttack = true;
+            }
+
         }
     }
     public void OnCloneDash(InputAction.CallbackContext context)
     {
-        if (context.started && !isDash && !isAttack && SkillManager.instance.cloneDash.CanUseSkill())
+        if (context.started && !isDash && !isAttack && !isAirAttack && SkillManager.instance.cloneDash.CanUseSkill())
         {
             isCloneDsah = true;
             isCloneDashEnable = false;
@@ -76,8 +87,11 @@ public class PlayerInputHandler : MonoBehaviour
     public void UseJumpInput() => jumpInput = false;
     public void UseDashInput() => isDash = false;
     public void UseAttackInput() => isAttack = false;
+    public void UseAirAttackInput () => isAirAttack = false;
+
+    public void SetAirState(bool isAir) => this.isAir = isAir;
 
     //技能
     public void UseCloneDashInput() => isCloneDsah =false;
-    public void UseCloneDashMoveInput() => isCloneDashEnable =false;
+    public void UseCloneDashMoveInput() => isCloneDashEnable = false;
 }

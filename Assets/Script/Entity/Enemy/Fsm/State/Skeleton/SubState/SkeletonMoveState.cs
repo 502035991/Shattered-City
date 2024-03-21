@@ -23,7 +23,6 @@ public class SkeletonMoveState : SkeletonGroundedState
         base.DoCheck();
         isTouchingGround = enemy.CheckIfTouchingGround();
         isTouchingWall = enemy.CheckIfTouchingWall();
-
     }
     public override void PhysicUpdate()
     {

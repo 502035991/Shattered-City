@@ -1,15 +1,12 @@
 fileFormatVersion: 2
-guid: f0cfb52674d006b45a26742515d6777e
+guid: 5dbf6d2eee7d74c4c881b9ab2929537f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5125239575711281107
-    second: anim_lights_0
-  - first:
-      213: 4120577847202693053
-    second: anim_lights_1
+      213: -5190526981810414931
+    second: anim_light2_0
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -116,34 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: anim_lights_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 13
-        width: 49
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d2094f4b2cd7fd8b0800000000000000
-      internalID: -5125239575711281107
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: anim_lights_1
+      name: anim_light2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 17
+        width: 128
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dbf3cd368bb3f2930800000000000000
-      internalID: 4120577847202693053
+      spriteID: daa1c1ce53b87f7b0800000000000000
+      internalID: -5190526981810414931
       vertices: []
       indices: 
       edges: []
@@ -168,8 +144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      anim_lights_0: -5125239575711281107
-      anim_lights_1: 4120577847202693053
+      anim_light2_0: -5190526981810414931
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 5dbf6d2eee7d74c4c881b9ab2929537f
+guid: 6f4aaa7bfe8b0e545b0988602d14b7f9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5190526981810414931
-    second: anim_light2_0
+      213: 194267116164964566
+    second: 008_0
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -96,39 +96,26 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: anim_light2_0
+      name: 008_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 16
+        width: 686
+        height: 162
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 221, y: 60, z: 195, w: 56}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: daa1c1ce53b87f7b0800000000000000
-      internalID: -5190526981810414931
+      spriteID: 6d06d82b9ec22b200800000000000000
+      internalID: 194267116164964566
       vertices: []
       indices: 
       edges: []
@@ -136,7 +123,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: acc2257b6ec5de94a9a9b419c62febf9
     internalID: 0
     vertices: []
     indices: 
@@ -144,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      anim_light2_0: -5190526981810414931
+      008_0: 194267116164964566
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

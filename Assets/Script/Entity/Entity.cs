@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D RB { get; private set; }
     public EntityFX entityFX { get; private set; }
+    public CharacterStats stats { get; private set; }
     #endregion
 
     private Vector2 workSpace;
@@ -30,11 +31,14 @@ public class Entity : MonoBehaviour
     [HideInInspector] public bool isControlled = false;
     [HideInInspector] public bool isAttacking = false;
 
+    public Action onFlipped;
+
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         RB = GetComponent<Rigidbody2D>();
         entityFX = GetComponent<EntityFX>();
+        stats =GetComponent<CharacterStats>();
     }
     protected virtual void Start()
     {
@@ -99,8 +103,8 @@ public class Entity : MonoBehaviour
     {
         isAttacking = true;
     }
-    public void UseAttackStatae() => isAttacking = false;
-    public virtual void TakeDamage()
+    public void UseAttackState() => isAttacking = false;
+    public virtual void TakeDamageEffect()
     {
         //entityFX.FlashFX().Forget();
     }
@@ -120,5 +124,11 @@ public class Entity : MonoBehaviour
     {
         facingDirection *= -1;
         transform.Rotate(0, 180, 0);
+
+        onFlipped?.Invoke();
+    }
+    public virtual void Die()
+    {
+
     }
 }

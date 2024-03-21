@@ -23,6 +23,10 @@ public class PlayerTimeStopState : PlayerAbilityState
         {
             player.RB.gravityScale = 0;
         }
+        else
+        {
+            
+        }
 
         player.SetVelocity(Vector3.zero);
         isTimeStopInput = player.inputHandler.isTimeStopEnable;
@@ -43,6 +47,7 @@ public class PlayerTimeStopState : PlayerAbilityState
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
+        player.SetVelocity(Vector3.zero);
         if (!isTimeStopInput)
         {
             isAbilityDone = true;

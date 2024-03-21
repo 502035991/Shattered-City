@@ -9,7 +9,7 @@ public class PlayerInAirState : PlayerState
     private bool isGrounded;
     private bool isTouchingWall;
     private bool isDash;   
-    private bool isAttack;
+    private bool isAirAttack;
 
     private bool isCloneDash;
     private bool isCloneDashEnable;
@@ -27,7 +27,7 @@ public class PlayerInAirState : PlayerState
         isTouchingWall = player.CheckIfTouchingWall();
         xInput = player.inputHandler.normInputX;
         isDash = player.inputHandler.isDash;
-        isAttack = player.inputHandler.isAttack;
+        isAirAttack = player.inputHandler.isAirAttack;
 
         isCloneDash = player.inputHandler.isCloneDsah;
         isCloneDashEnable = player.inputHandler.isCloneDashEnable;
@@ -41,12 +41,15 @@ public class PlayerInAirState : PlayerState
         isGrounded = false;
         isTouchingWall = false;
         xInput = 0;
+
+        player.inputHandler.SetAirState(true);
     }
 
     public override void Exit()
     {
         base.Exit();
         player.inputHandler.UseJumpInput();
+        player.inputHandler.SetAirState(false);
     }
 
     public override void PhysicUpdate()
@@ -71,9 +74,9 @@ public class PlayerInAirState : PlayerState
         {
             stateMachine.ChangeState(player.wallSlideState);
         }
-        else if(isAttack)
+        else if(isAirAttack)
         {
-            //stateMachine.ChangeState(player.playerPrimaryAttackState);
+            stateMachine.ChangeState(player.airAttackState);
         }
         else if(isDash)
         {

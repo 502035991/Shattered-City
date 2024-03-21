@@ -1,16 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player : Entity
 {
-    public static Player Instance;
     private PlayerData playerData;
     public PlayerInputHandler inputHandler { get; private set; }
     public PlayerStateMachine stateMachine {  get; private set; }
     public SkillManager skill {  get; private set; }
+
     #region States
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
@@ -19,7 +15,9 @@ public class Player : Entity
     public PlayerInAirState inAirState { get; private set; }
     public PlayerLandState landState { get; private set; }
     public PlayerWallSlideState wallSlideState { get; private set; }
-    public PlayerAttackState playerPrimaryAttackState { get; private set; }
+    public PlayerAttackState primaryAttackState { get; private set; }
+    public PlayerAirAttackState airAttackState { get; private set; }
+    public PlayerDeadState deadState { get; private set; }
 
     //¼¼ÄÜ
     public PlayerCloneDashState CloneDashState { get; private set; }
@@ -40,7 +38,9 @@ public class Player : Entity
         inAirState = new PlayerInAirState(stateMachine, playerData, this, "InAir");        
         landState = new PlayerLandState(stateMachine, playerData, this, "Land");
         wallSlideState = new PlayerWallSlideState(stateMachine, playerData, this, "WallSlide");
-        playerPrimaryAttackState = new PlayerAttackState(stateMachine, playerData, this, "Attack");
+        primaryAttackState = new PlayerAttackState(stateMachine, playerData, this, "Attack");
+        airAttackState = new PlayerAirAttackState(stateMachine, playerData, this, "AirAttack");
+        deadState = new PlayerDeadState(stateMachine, playerData, this, "Dead");
 
         CloneDashState = new PlayerCloneDashState(stateMachine, playerData, this, "CloneDash");
         timeStopState = new PlayerTimeStopState(stateMachine, playerData, this, "TimeStop");
@@ -75,10 +75,25 @@ public class Player : Entity
         Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);
         Gizmos.DrawWireSphere(attackCheck.position, entityData.attackCheckRadius);
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + entityData.wallCheckDistance, wallCheck.position.y));
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(airAttackChenck.position, size);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+
+    public Vector3 size;
+    [SerializeField]
+    private Transform airAttackChenck;
+
+    public Collider2D[] GetAirAttackTarget()
     {
-        
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(airAttackChenck.position, size, 0f);
+        return colliders;
+    }
+    public override void Die()
+    {
+        stateMachine.ChangeState(deadState);
     }
 }

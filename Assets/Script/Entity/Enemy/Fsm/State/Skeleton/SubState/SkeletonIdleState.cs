@@ -27,9 +27,7 @@ public class SkeletonIdleState : SkeletonGroundedState
     {
         base.DoCheck();
         timer -= Time.deltaTime;
-
     }
-
     public override void Exit()
     {
         base.Exit();
