@@ -27,8 +27,8 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected BaseData entityData;
 
-    protected bool isEnemy = true;//e
-    [HideInInspector] public bool isControlled = false;
+    protected bool isEnemy = true;
+
     [HideInInspector] public bool isAttacking = false;
 
     public Action onFlipped;
@@ -96,7 +96,7 @@ public class Entity : MonoBehaviour
     #region Attack
     public Collider2D[] GetAttackTarget()
     {
-        Collider2D[] coll = Physics2D.OverlapCircleAll(attackCheck.position, entityData.attackCheckRadius);
+        Collider2D[] coll = Physics2D.OverlapCircleAll(attackCheck.position, entityData.attackDistance);
         return coll;
     }
     public void AttackTarget()
@@ -107,17 +107,6 @@ public class Entity : MonoBehaviour
     public virtual void TakeDamageEffect()
     {
         //entityFX.FlashFX().Forget();
-    }
-    public virtual async UniTask KnockBack(Vector2 direction, float magnitude)
-    {
-        if(!isControlled)
-        {
-            SetVelocity(direction.normalized * magnitude);
-
-            isControlled = true;
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5f)); // 例如无敌持续时间        
-            isControlled = false;
-        }
     }
     #endregion
     internal void Filp()

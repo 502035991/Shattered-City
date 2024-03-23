@@ -51,6 +51,8 @@ public class PlayerAirAttackState : PlayerAbilityState
                 if (target != null)
                 {
                     player.stats.DoDamage(target.stats, 10);
+                    target.KnockBack(Vector2.zero, 0, 0.3f).Forget();
+
 
                     player.SetVelocityY(0);
                     await UniTask.Delay(200);

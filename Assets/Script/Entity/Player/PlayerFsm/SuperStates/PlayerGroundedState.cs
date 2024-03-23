@@ -40,7 +40,6 @@ public class PlayerGroundedState : PlayerState
     }
     public override void PhysicUpdate()    {
         base.PhysicUpdate();
-
         if(jumpInput)
         {
             jumpInput = false;
@@ -68,6 +67,13 @@ public class PlayerGroundedState : PlayerState
             isTimeStopEnable = false;
             stateMachine.ChangeState(player.timeStopState,bState.ground);
         }
+    }
+    public override void DoCheck()
+    {
+        base.DoCheck();
+
+        if (player.isControlled)
+            stateMachine.ChangeState(player.hitState);
 
     }
 }

@@ -36,6 +36,7 @@ public class PlayerCloneDashState : PlayerAbilityState
             player.RB.gravityScale = 0;
             await UniTask.Delay(100);
             player.RB.gravityScale = 3.5f;
+            isAbilityDone = true;
         }
     }
     public override void Exit()

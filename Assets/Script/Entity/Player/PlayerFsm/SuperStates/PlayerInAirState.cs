@@ -66,6 +66,10 @@ public class PlayerInAirState : PlayerState
     {
         base.Update();
 
+        if (player.isControlled)
+            stateMachine.ChangeState(player.hitState);
+
+
         if (isGrounded && player.currentVelocity.y < 0.01f)
         {
             stateMachine.ChangeState(player.idleState);

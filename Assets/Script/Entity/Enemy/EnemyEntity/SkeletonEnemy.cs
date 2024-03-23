@@ -35,19 +35,19 @@ public class SkeletonEnemy : Enemy
         Vector2 leftBoundary = playerCheck.position + Vector3.left * da.playerCheckLength;
         Vector2 rightBoundary = playerCheck.position + Vector3.right * da.playerCheckLength;
 
-        Gizmos.DrawWireSphere(attackCheck.position, entityData.attackCheckRadius);
+        Gizmos.DrawWireSphere(attackCheck.position, entityData.attackDistance);
         Gizmos.DrawLine(leftBoundary, rightBoundary);
     }
 
-    public override EnemyState GetStunnedState()
+    public override EnemyState GetHitState()
     {
         return stunnedState;
     }
 
-    public override UniTask KnockBack(Vector2 direction, float magnitude)
+    public override UniTask KnockBack(Vector2 direction, float magnitude ,float duration)
     {
         isControlled = false;
-        return base.KnockBack(direction, magnitude);
+        return base.KnockBack(direction, magnitude, duration);
     }
     public override void Die()
     {

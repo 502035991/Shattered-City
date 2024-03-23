@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
 public class CloneDashSkillController : MonoBehaviour
 {
@@ -16,10 +17,12 @@ public class CloneDashSkillController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (collision.gameObject.GetComponent<Enemy>())
+        var target = collision.gameObject.GetComponent<Enemy>();
+        if (target)
         {
             anim.SetBool("CloneAttack", true);
+            target.KnockBack(Vector2.zero, 0, 0.3f).Forget();
+            PlayerManager.instance.player.stats.DoDamage(target.stats,2);            
         }
     }
     public void SetPosition(Transform originPosition, int facingDir)

@@ -46,7 +46,10 @@ public class PlayerTouchingWallState : PlayerState
     public override void Update()
     {
         base.Update();
-        if(isGrounded)
+        if (player.isControlled)
+            stateMachine.ChangeState(player.hitState);
+
+        if (isGrounded)
         {
             stateMachine.ChangeState(player.idleState);
         }

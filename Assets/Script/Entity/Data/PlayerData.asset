@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheckRadius: 0.2
   wallCheckDistance: 0.5
-  attackCheckRadius: 1
+  attackDistance: 1.5
   movementVelocity: 8
   layerToGround:
     serializedVersion: 2

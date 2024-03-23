@@ -43,7 +43,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void OnNormalAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !isDash)
+        if (context.started && !isDash && !isCloneDashEnable)
         {
             if(!isAir && !isAirAttack)
             {

@@ -30,7 +30,7 @@ public class EnemyState
     public virtual void DoCheck()
     {
         if (baseEnemy.isControlled && !isDead)
-            enemyStateMachine.ChangeState(baseEnemy.GetStunnedState());
+            enemyStateMachine.ChangeState(baseEnemy.GetHitState());
     }
     public virtual void PhysicUpdate()
     {

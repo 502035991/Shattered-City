@@ -7,7 +7,6 @@ public class EnemyData : BaseData
 {
     [Header("¼ì²â")]
     public int playerCheckLength;
-    public float attackDistance;
     public LayerMask layerToPlayer;
 
     [Header("¹¥»÷")]

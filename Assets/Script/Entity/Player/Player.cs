@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class Player : Entity
@@ -6,6 +8,7 @@ public class Player : Entity
     public PlayerInputHandler inputHandler { get; private set; }
     public PlayerStateMachine stateMachine {  get; private set; }
     public SkillManager skill {  get; private set; }
+    [HideInInspector] public bool isControlled = false;
 
     #region States
     public PlayerIdleState idleState { get; private set; }
@@ -15,11 +18,13 @@ public class Player : Entity
     public PlayerInAirState inAirState { get; private set; }
     public PlayerLandState landState { get; private set; }
     public PlayerWallSlideState wallSlideState { get; private set; }
-    public PlayerAttackState primaryAttackState { get; private set; }
-    public PlayerAirAttackState airAttackState { get; private set; }
+    public PlayerHitState hitState { get; private set; }
+
     public PlayerDeadState deadState { get; private set; }
 
     //技能
+    public PlayerAttackState primaryAttackState { get; private set; }
+    public PlayerAirAttackState airAttackState { get; private set; }
     public PlayerCloneDashState CloneDashState { get; private set; }
     public PlayerTimeStopState timeStopState { get; private set; }
     #endregion
@@ -38,6 +43,7 @@ public class Player : Entity
         inAirState = new PlayerInAirState(stateMachine, playerData, this, "InAir");        
         landState = new PlayerLandState(stateMachine, playerData, this, "Land");
         wallSlideState = new PlayerWallSlideState(stateMachine, playerData, this, "WallSlide");
+        hitState = new PlayerHitState(stateMachine, playerData, this, "Hit");
         primaryAttackState = new PlayerAttackState(stateMachine, playerData, this, "Attack");
         airAttackState = new PlayerAirAttackState(stateMachine, playerData, this, "AirAttack");
         deadState = new PlayerDeadState(stateMachine, playerData, this, "Dead");
@@ -70,19 +76,27 @@ public class Player : Entity
     {
         stateMachine.currentState.AnimationFinishTrigger();
     }
+    public virtual async UniTask KnockBack(Vector2 direction, float magnitude, float duraton)
+    {
+        if (!isControlled)
+        {
+            SetVelocity(direction.normalized * magnitude);
+
+            isControlled = true;
+            await UniTask.Delay(TimeSpan.FromSeconds(duraton)); // 例如无敌持续时间        
+            isControlled = false;
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);
-        Gizmos.DrawWireSphere(attackCheck.position, entityData.attackCheckRadius);
+        Gizmos.DrawWireSphere(attackCheck.position, entityData.attackDistance);
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + entityData.wallCheckDistance, wallCheck.position.y));
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(airAttackChenck.position, size);
     }
-
-
-
-
     public Vector3 size;
     [SerializeField]
     private Transform airAttackChenck;

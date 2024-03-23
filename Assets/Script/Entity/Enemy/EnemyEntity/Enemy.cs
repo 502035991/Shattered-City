@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +12,11 @@ public abstract class Enemy : Entity
     [SerializeField]
     protected Transform playerCheck;
 
-    public string curState;
+    [SerializeField]
+    private bool canControl;
+    [HideInInspector] public bool isControlled = false;
+
+    //public string curState;
     #region CallBack
     protected override void Awake()
     {
@@ -23,7 +29,7 @@ public abstract class Enemy : Entity
         base.Update();
         stateMachine.currentState.Update();
 
-        curState = stateMachine.currentState .ToString();
+        //curState = stateMachine.currentState .ToString();
     }
     protected override void LateUpdate()
     {
@@ -68,6 +74,17 @@ public abstract class Enemy : Entity
     {
         stateMachine.currentState.AnimationFinishTrigger();
     }
-    public abstract EnemyState GetStunnedState();
+    public virtual async UniTask KnockBack(Vector2 direction, float magnitude, float duraton)
+    {
+        if (!isControlled && canControl)
+        {
+            SetVelocity(direction.normalized * magnitude);
+
+            isControlled = true;
+            await UniTask.Delay(TimeSpan.FromSeconds(duraton)); // 例如无敌持续时间        
+            isControlled = false;
+        }
+    }
+    public abstract EnemyState GetHitState();
 
 }
