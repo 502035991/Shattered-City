@@ -5,6 +5,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Direction
+{
+    left = -1,
+    right = 1,
+};
+public enum Phase//½×¶Î
+{ 
+    One =1,
+    Two =2,
+    Three =3,
+}
+
 public class Entity : MonoBehaviour
 {
     #region Components
@@ -25,14 +37,20 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected Transform attackCheck;
     [SerializeField]
+    protected Vector3 baseAttackSize;
+    [SerializeField]
     protected BaseData entityData;
+    [SerializeField]
+    private Direction imgDirection;
 
     protected bool isEnemy = true;
 
     [HideInInspector] public bool isAttacking = false;
+    internal bool CanBeHurt = true;
 
     public Action onFlipped;
 
+    #region CallBack
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -42,7 +60,7 @@ public class Entity : MonoBehaviour
     }
     protected virtual void Start()
     {
-        facingDirection = 1;
+        facingDirection = (int)imgDirection;
     }
     protected virtual void Update()
     {
@@ -56,6 +74,7 @@ public class Entity : MonoBehaviour
     {
 
     }
+    #endregion
     #region Check
     public bool CheckIfTouchingGround()
     {
@@ -94,7 +113,7 @@ public class Entity : MonoBehaviour
         }
     }
     #region Attack
-    public Collider2D[] GetAttackTarget()
+    public virtual Collider2D[] GetAttackTarget()
     {
         Collider2D[] coll = Physics2D.OverlapCircleAll(attackCheck.position, entityData.attackDistance);
         return coll;
@@ -104,6 +123,8 @@ public class Entity : MonoBehaviour
         isAttacking = true;
     }
     public void UseAttackState() => isAttacking = false;
+
+    public void SetHurtState(bool value) => CanBeHurt = value;
     public virtual void TakeDamageEffect()
     {
         //entityFX.FlashFX().Forget();

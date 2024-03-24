@@ -88,6 +88,19 @@ public class Player : Entity
         }
     }
 
+    [SerializeField]
+    private Transform airAttackChenck;
+    public Collider2D[] GetAirAttackTarget()
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(airAttackChenck.position, baseAttackSize, 0f);
+        return colliders;
+    }
+    public override void Die()
+    {
+        stateMachine.ChangeState(deadState);
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);
@@ -95,19 +108,6 @@ public class Player : Entity
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + entityData.wallCheckDistance, wallCheck.position.y));
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(airAttackChenck.position, size);
-    }
-    public Vector3 size;
-    [SerializeField]
-    private Transform airAttackChenck;
-
-    public Collider2D[] GetAirAttackTarget()
-    {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(airAttackChenck.position, size, 0f);
-        return colliders;
-    }
-    public override void Die()
-    {
-        stateMachine.ChangeState(deadState);
+        Gizmos.DrawWireCube(airAttackChenck.position, baseAttackSize);
     }
 }

@@ -11,6 +11,5 @@ public class EnemyData : BaseData
 
     [Header("¹¥»÷")]
     public float attackCD;
-    public float CriticalValue;
 
 }

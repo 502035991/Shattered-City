@@ -48,7 +48,7 @@ public class PlayerAirAttackState : PlayerAbilityState
             foreach (var item in coll)
             {
                 Enemy target = item.GetComponent<Enemy>();
-                if (target != null)
+                if (target != null && target.CanBeHurt)
                 {
                     player.stats.DoDamage(target.stats, 10);
                     target.KnockBack(Vector2.zero, 0, 0.3f).Forget();

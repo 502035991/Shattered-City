@@ -43,7 +43,7 @@ public class PlayerAttackState : PlayerAbilityState
             foreach (var item in coll)
             {
                 Enemy target = item.GetComponent<Enemy>();
-                if (target != null)
+                if (target != null && target.CanBeHurt)
                 {
 
                     if (normalAttackConter == 0)

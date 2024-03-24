@@ -18,13 +18,11 @@ public class PlayerAbilityState : PlayerState
 
         isAbilityDone = false;
         isGrounded = player.CheckIfTouchingGround();
-        isDash = player.inputHandler.isDash;
     }
     public override void DoCheck()
     {
         base.DoCheck();
         isGrounded = player.CheckIfTouchingGround();
-        isDash = player.inputHandler.isDash;
     }
 
     public override void Exit()
