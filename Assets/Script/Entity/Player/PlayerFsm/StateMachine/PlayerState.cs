@@ -25,7 +25,7 @@ public class PlayerState
 
     public virtual void Enter()
     {
-        Debug.Log("enter Player " + animName);
+        //Debug.Log("enter Player " + animName);
         player.anim.SetBool(animName, true);
     }
     public virtual void Update()

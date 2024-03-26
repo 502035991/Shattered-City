@@ -13,7 +13,6 @@ public class Crystal_GroundedState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
     }
     public override void DoCheck()
     {
@@ -22,7 +21,8 @@ public class Crystal_GroundedState : EnemyState
     }
     private void CheckFilp()
     {
-        enemy.SetFilp(player.transform.position.x < enemy.transform.position.x ? -1 : 1);
+        if(!enemy.CheckIsOnCooldown(CrystalCD.BaseAttack1) || !enemy.CheckIsOnCooldown(CrystalCD.BaseAttack2))
+            enemy.SetFilp(player.transform.position.x < enemy.transform.position.x ? -1 : 1);
     }
 
 }

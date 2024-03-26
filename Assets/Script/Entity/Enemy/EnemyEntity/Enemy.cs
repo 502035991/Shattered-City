@@ -13,8 +13,6 @@ public abstract class Enemy : Entity
     [SerializeField]
     private bool canControl;
     [HideInInspector] public bool isControlled = false;
-
-    //public string curState;
     #region CallBack
     protected override void Awake()
     {
@@ -26,8 +24,6 @@ public abstract class Enemy : Entity
     {
         base.Update();
         stateMachine.currentState.Update();
-
-        //curState = stateMachine.currentState .ToString();
     }
     protected override void LateUpdate()
     {

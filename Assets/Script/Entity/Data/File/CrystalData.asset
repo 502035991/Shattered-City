@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheckRadius: 0.3
   wallCheckDistance: 0.4
-  attackDistance: 3
+  attackDistance: 7
   movementVelocity: 4
   layerToGround:
     serializedVersion: 2
@@ -24,4 +24,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackCD: 0
-  CriticalValue: 0
+  Skill:
+  - name: 0
+    CD: 1
+    distance: 3
+  - name: 1
+    CD: 3
+    distance: 3
+  - name: 2
+    CD: 6
+    distance: 7
+  - name: 3
+    CD: 6
+    distance: 0

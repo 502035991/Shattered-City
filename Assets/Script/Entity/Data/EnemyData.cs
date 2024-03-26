@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,4 +13,13 @@ public class EnemyData : BaseData
     [Header("¹¥»÷")]
     public float attackCD;
 
+
+    [Serializable]
+    public struct FruitPrefab
+    {
+        public CrystalCD name;
+        public float CD;
+        public float distance;
+    }
+    public FruitPrefab[] Skill;
 }

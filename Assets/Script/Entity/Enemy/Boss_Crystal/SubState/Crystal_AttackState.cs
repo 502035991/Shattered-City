@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,27 +6,42 @@ using UnityEngine;
 
 public class Crystal_AttackState : Crystal_AbilityState
 {
-    public Crystal_AttackState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
-    {
-    }
+    private int normalAttackConter = 1;
 
-    public override void AnimationFinishTrigger()
+    public Crystal_AttackState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
     {
-        base.AnimationFinishTrigger();
-        isAbilityDone = true;
-    }
-
-    public override void DoCheck()
-    {
-        base.DoCheck();
-
     }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocityX(0);
+        if (normalAttackConter > 2)
+            normalAttackConter = 1;
+
+        enemy.SetVelocityX(15 * enemy.facingDirection);
+        enemy.anim.SetInteger("NormalAttackConter", normalAttackConter);
+    }
+    public override async void AnimationFinishTrigger()
+    {
+        base.AnimationFinishTrigger();
+        if (normalAttackConter <2)
+        {
+            await UniTask.Delay(600);
+            enemyStateMachine.ChangeState(enemy.idleState);
+            ac?.Invoke(CrystalCD.BaseAttack1);
+        }
+        else
+        {
+            await UniTask.Delay(600);
+            isAbilityDone = true;
+            ac?.Invoke(CrystalCD.BaseAttack2);
+        }
+        normalAttackConter += 1;
     }
 
+    public override void DoCheck()
+    {
+        base.DoCheck();
+    }
 
 }
