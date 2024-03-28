@@ -28,6 +28,8 @@ public class PlayerAttackState : PlayerAbilityState
     public override void DoCheck()
     {
         base.DoCheck();
+        if (player.isControlled)
+            stateMachine.ChangeState(player.hitState);
         Attack();
     }
     private void Attack()
@@ -71,7 +73,6 @@ public class PlayerAttackState : PlayerAbilityState
         float currentTime = startTime;
         bool isAttacking = false;
 
-        player.inputHandler.UseAttackInput();
         await WaitForAnimationCompletion();
 
         normalAttackConter++;
@@ -99,4 +100,9 @@ public class PlayerAttackState : PlayerAbilityState
         isAbilityDone = true;
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+        player.inputHandler.UseAttackInput();
+    }
 }

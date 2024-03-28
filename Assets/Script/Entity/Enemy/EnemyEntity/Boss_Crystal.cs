@@ -1,10 +1,9 @@
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Boss_Crystal;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public enum CrystalCD
 {
@@ -28,6 +27,8 @@ public class Boss_Crystal : Enemy
     #endregion
     #region 变量
     public Phase currentPhase {  get; private set; }
+    [SerializeField]
+    private Transform skillRockPos;
     #endregion
     protected override void Awake()
     {
@@ -40,7 +41,7 @@ public class Boss_Crystal : Enemy
         inAirState = new Crystal_InAirState(stateMachine, enemyData, this, "Jump");
         jumpState = new Crystal_JumpState(stateMachine, enemyData, this, "Jump", GetCurrentAttack);
         attackState = new Crystal_AttackState(stateMachine, enemyData, this, "Attack", GetCurrentAttack);
-        skillState1 = new Crystal_SkillState1(stateMachine, enemyData, this, "SkillOne", GetCurrentAttack);
+        skillState1 = new Crystal_SkillState1(stateMachine, enemyData, this, "Skill", GetCurrentAttack);
 
         //deadState = new SlimeDeadState(stateMachine, enemyData, this, "Dead");
     }
@@ -59,10 +60,16 @@ public class Boss_Crystal : Enemy
     #region Attack
     private Dictionary<CrystalCD ,float> CdList = new Dictionary<CrystalCD ,float>();
     private List<CrystalCD> checkCDs = new List<CrystalCD>();
+    /// <summary>
+    /// CD检查
+    /// </summary>
     public bool CheckIsOnCooldown(CrystalCD attackName)
     {
-        return checkCDs.Contains(attackName);
+        return checkCDs.Contains(attackName);        
     }
+    /// <summary>
+    /// 当前攻击/技能 计入CD
+    /// </summary>
     private void GetCurrentAttack(CrystalCD attackName)
     {
         if (!checkCDs.Contains(attackName))
@@ -71,6 +78,9 @@ public class Boss_Crystal : Enemy
             CooldownTimer(attackName, CdList[attackName]);
         }
     }
+    /// <summary>
+    /// CD计时器
+    /// </summary>
     private async void CooldownTimer(CrystalCD attackName, float cooldown)
     {
         while (cooldown >0)
@@ -79,6 +89,20 @@ public class Boss_Crystal : Enemy
             await UniTask.Yield();
         }
         checkCDs.Remove(attackName);
+    }
+    /// <summary>
+    /// 放技能
+    /// </summary>
+    public GameObject CreatSkill(GameObject obj)
+    {
+        if (obj == null) return default;
+        var obj1 =Instantiate(obj);
+
+        if(currentPhase == Phase.One)
+            obj1.transform.position = skillRockPos.position;
+
+
+        return obj1;
     }
     #endregion
     public void SetPhase(int va)

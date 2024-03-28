@@ -28,12 +28,13 @@ public class Crystal_AbilityState : EnemyState
         {
             if (isGrounded && enemy.currentVelocity.y < 0.01f)
             {
-                enemyStateMachine.ChangeState(enemy.moveState);
+                enemyStateMachine.ChangeState(enemy.idleState);
             }
             else
             {
                 enemyStateMachine.ChangeState(enemy.inAirState);
             }
         }
+
     }
 }

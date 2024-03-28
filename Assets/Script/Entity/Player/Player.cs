@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Player : Entity
 {
@@ -72,11 +74,12 @@ public class Player : Entity
         stateMachine.currentState.PhysicUpdate();
     }
     #endregion
+
     public void AnimationTrigger()
     {
         stateMachine.currentState.AnimationFinishTrigger();
     }
-    public virtual async UniTask KnockBack(Vector2 direction, float magnitude, float duraton)
+    public async UniTask KnockBack(Vector2 direction, float magnitude, float duraton)
     {
         if (!isControlled)
         {
@@ -84,10 +87,69 @@ public class Player : Entity
 
             isControlled = true;
             await UniTask.Delay(TimeSpan.FromSeconds(duraton)); // 例如无敌持续时间        
-            isControlled = false;
+            isControlled = false;            
         }
     }
+    private Sequence knockBackUpTween;
+    private Tweener knockBackMove;
+    public void KnockBackUp(int direction , float distance ,float power , float durection)
+    {
+        if (!isControlled)
+        {
+            isControlled = true;
+            SetFilp(-direction);
+            var targetPos = new Vector2(transform.position.x + distance * direction, transform.position.y);
+            knockBackUpTween = transform.DOJump(targetPos, power, 1, durection)
+                .OnUpdate(() => 
+                {
+                    if (Physics2D.Raycast(transform.position, Vector3.right * -facingDirection, 1f, 1 << LayerMask.NameToLayer("Ground")))
+                    {
+                        knockBackUpTween.Kill();
+                        isControlled = false;
+                    }
+                })
+                .OnComplete( () => isControlled = false);
+        }
+    }
+    public void KnockBackMove(int direction, float distance, float durection)
+    {
+        if (!isControlled)
+        {
+            isControlled = true;
+            SetFilp(-direction);
+            var targetPos = new Vector2(transform.position.x + distance * direction, transform.position.y);
+            knockBackMove = transform.DOMove(targetPos,durection)
+                .OnUpdate(() =>
+                {
+                    if (Physics2D.Raycast(transform.position, Vector3.right * -facingDirection, 0.5f, 1 << LayerMask.NameToLayer("Ground")))
+                    {
+                        knockBackMove.Kill();
+                        isControlled = false;
+                    }
+                })
+                .OnComplete(() => isControlled = false);
+        }
+    }
+    /// <summary>
+    /// 僵直，控制，吸附
+    /// </summary>
+    public void ControllPlyer(Vector2 pos ,int direction)
+    {
+        if (!isControlled)
+        {
+            isControlled = true;
+            SetFilp(-direction);
+            RB.gravityScale = 0;
+        }
+        transform.position = new Vector2(pos.x, transform.position.y);
 
+    }
+
+    public void CancleController()
+    {
+        isControlled =false;
+        RB.gravityScale = 3.5f;
+    }
     [SerializeField]
     private Transform airAttackChenck;
     public Collider2D[] GetAirAttackTarget()

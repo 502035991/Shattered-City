@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3884827937789719477}
   - component: {fileID: -2383707893179905780}
   m_Layer: 8
-  m_Name: Clone
+  m_Name: Clone_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

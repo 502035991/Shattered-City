@@ -12,11 +12,13 @@ public abstract class Enemy : Entity
 
     [SerializeField]
     private bool canControl;
+    [HideInInspector] public BoxCollider2D coll;
     [HideInInspector] public bool isControlled = false;
     #region CallBack
     protected override void Awake()
     {
         base.Awake();
+        coll = GetComponent<BoxCollider2D>();
         stateMachine = new EnemyStateMachine();
         enemyData = (EnemyData)entityData;
     }
@@ -67,6 +69,10 @@ public abstract class Enemy : Entity
     public void AnimationTrigger()
     {
         stateMachine.currentState.AnimationFinishTrigger();
+    }
+    public void AnimationSkillEffect()
+    {
+        stateMachine.currentState.AnimationSkillEffect();
     }
     public virtual async UniTask KnockBack(Vector2 direction, float magnitude, float duraton)
     {

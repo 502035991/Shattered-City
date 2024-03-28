@@ -20,6 +20,8 @@ public class EnemyData : BaseData
         public CrystalCD name;
         public float CD;
         public float distance;
+        public int Damage;
+        public GameObject obj;
     }
     public FruitPrefab[] Skill;
 }

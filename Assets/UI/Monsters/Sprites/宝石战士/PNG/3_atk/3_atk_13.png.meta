@@ -106,12 +106,12 @@ TextureImporter:
       name: 3_atk_13_0
       rect:
         serializedVersion: 2
-        x: 139
-        y: 0
-        width: 140
-        height: 65
+        x: 140
+        y: 1
+        width: 58
+        height: 60
       alignment: 9
-      pivot: {x: 0.1, y: 0.35}
+      pivot: {x: 0.228, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -119,6 +119,27 @@ TextureImporter:
       bones: []
       spriteID: bd5635e5258bf1990800000000000000
       internalID: -7413003797719194149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_atk_13_1
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 1
+        width: 76
+        height: 60
+      alignment: 9
+      pivot: {x: 0.455, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3caf685cf463bd6408c662749b99dfd4
+      internalID: -2023927453600416866
       vertices: []
       indices: 
       edges: []

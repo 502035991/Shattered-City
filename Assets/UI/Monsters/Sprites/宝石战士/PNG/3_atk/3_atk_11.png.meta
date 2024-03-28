@@ -112,22 +112,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 3_atk_11_0
+      name: 3_atk_11_1
       rect:
         serializedVersion: 2
-        x: 130
-        y: 0
-        width: 155
-        height: 75
+        x: 207
+        y: 1
+        width: 71
+        height: 60
       alignment: 9
-      pivot: {x: 0.15, y: 0.3}
+      pivot: {x: 0.42, y: 0.12}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6ba8771405d0095a0800000000000000
-      internalID: -6516694022458209610
+      spriteID: 293b1450dfd110649a0e66abff82bc58
+      internalID: 542083668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_atk_11_0
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 1
+        width: 54
+        height: 60
+      alignment: 9
+      pivot: {x: 0.245, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa77e12bb2c384e4c8ccf6bde74d0f11
+      internalID: 548013999
       vertices: []
       indices: 
       edges: []
@@ -143,7 +164,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      3_atk_11_0: -6516694022458209610
+      3_atk_11_0: 548013999
+      3_atk_11_1: 542083668
+      3_atk_11_2: -245899148
+      3_atk_11_4: -1463373634
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
