@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class Crystal_MoveState : Crystal_GroundedState
 {
-    public Crystal_MoveState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
+
+    private bool checkWait =false;
+
+    public Crystal_MoveState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
     {
     }
 
-    private bool checkWait =false;
     public override void DoCheck()
     {
         base.DoCheck();

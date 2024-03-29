@@ -19,9 +19,12 @@ MonoBehaviour:
   layerToGround:
     serializedVersion: 2
     m_Bits: 512
+  layerToWall:
+    serializedVersion: 2
+    m_Bits: 1024
   playerCheckLength: 10
   layerToPlayer:
     serializedVersion: 2
     m_Bits: 64
   attackCD: 3
-  CriticalValue: 0
+  Skill: []

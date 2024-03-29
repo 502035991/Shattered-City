@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3309282151188664412}
   - component: {fileID: 2103123161433713389}
   - component: {fileID: -8080009164805403832}
+  - component: {fileID: 759840535815117661}
   m_Layer: 0
   m_Name: Crystal_Skill1
   m_TagString: Untagged
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18bdb71254c9ff4390c7328e87f088d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 7
 --- !u!61 &-8080009164805403832
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,3 +171,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.25, y: 1.1666666}
   m_EdgeRadius: 0
+--- !u!50 &759840535815117661
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955317082533122406}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

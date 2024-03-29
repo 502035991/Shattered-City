@@ -6,10 +6,13 @@ using UnityEngine;
 
 public class Crystal_IdleSate : Crystal_GroundedState
 {
-    public Crystal_IdleSate(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
+
+    private bool isStop = false;
+
+    public Crystal_IdleSate(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
     {
     }
-    private bool isStop = false;
+
     public override void DoCheck()
     {
         base.DoCheck();

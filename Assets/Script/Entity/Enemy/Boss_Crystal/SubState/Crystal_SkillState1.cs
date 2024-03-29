@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 public class Crystal_SkillState1 : Crystal_AbilityState
 {
-    public Crystal_SkillState1(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
+    public Crystal_SkillState1(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
     {
     }
 
@@ -12,7 +12,7 @@ public class Crystal_SkillState1 : Crystal_AbilityState
         var controller = obj.GetComponent<CrystalSkillRockController>();
 
 
-        controller.Init(enemy.facingDirection);
+        controller.Init(enemy.facingDirection , 0.5f);
 
     }
     public override void AnimationFinishTrigger()

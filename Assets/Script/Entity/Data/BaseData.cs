@@ -12,4 +12,5 @@ public class BaseData : ScriptableObject
     [Header("ÒÆ¶¯")]
     public float movementVelocity = 10f;
     public LayerMask layerToGround;
+    public LayerMask layerToWall;
 }

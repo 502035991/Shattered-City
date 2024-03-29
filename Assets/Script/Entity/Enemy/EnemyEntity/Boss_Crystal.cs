@@ -1,7 +1,4 @@
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,7 +34,7 @@ public class Boss_Crystal : Enemy
         idleState = new Crystal_IdleSate(stateMachine, enemyData, this, "Idle");
         landState = new Crystal_LandState(stateMachine, enemyData, this, "Land");
 
-
+         
         inAirState = new Crystal_InAirState(stateMachine, enemyData, this, "Jump");
         jumpState = new Crystal_JumpState(stateMachine, enemyData, this, "Jump", GetCurrentAttack);
         attackState = new Crystal_AttackState(stateMachine, enemyData, this, "Attack", GetCurrentAttack);

@@ -19,6 +19,9 @@ MonoBehaviour:
   layerToGround:
     serializedVersion: 2
     m_Bits: 512
+  layerToWall:
+    serializedVersion: 2
+    m_Bits: 1024
   jumpVelocity: 15
   wallSlideVelocity: 1
   duration: 0.15

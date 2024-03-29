@@ -10,9 +10,9 @@ public class Crystal_AbilityState : EnemyState
 
     protected bool isAbilityDone;
     protected bool isGrounded;
-    public Crystal_AbilityState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName)
+    public Crystal_AbilityState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName)
     {
-        this.enemy = (Boss_Crystal)enemy;
+        this.enemy = enemy;
         this.ac = ac;
     }
     public override void Enter()

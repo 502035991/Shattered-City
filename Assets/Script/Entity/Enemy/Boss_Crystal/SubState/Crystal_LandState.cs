@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Crystal_LandState : Crystal_GroundedState
 {
-    public Crystal_LandState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
+    public Crystal_LandState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
     {
     }
 }

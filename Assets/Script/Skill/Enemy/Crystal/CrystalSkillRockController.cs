@@ -8,56 +8,74 @@ public class CrystalSkillRockController : MonoBehaviour
 {
     private SpriteRenderer sr;
     private Animator anim;
+    private Rigidbody2D rb;
 
     private Player player;
     private int dir;
     private Tween moveTween;
     private bool canControl;
+
+
+    private float duration;
+    private float startTime;
+    [SerializeField] private float speed;
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
     private void OnEnable()
     {
         canControl = true;
+        //rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
     private void Update()
     {
-        if (!canControl)
-            return;
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, 2, 1 << LayerMask.NameToLayer("Player"));
-        if(collider != null )
+        if(Time.time < startTime + duration)
         {
-            player = collider.gameObject.GetComponent<Player>();
-            player.ControllPlyer(transform.position , dir);
+            if(Physics2D.Raycast(transform.position,Vector2.right * dir , 1 << LayerMask.NameToLayer("Wall")))
+            {
+                rb.velocity = Vector2.zero;
+            }
+            else
+            {
+                rb.velocity = new Vector2(speed * dir, rb.velocity.y);
+            }
+
+            if (player != null)
+            {
+                player.ControllPlyer(transform.position, dir);
+            }
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            canControl = false;
+
+            if(player!= null)
+            {
+                player.CancelControl();
+            }
         }
     }
-    public void Init(int direction)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        player = collision.GetComponent<Player>();
+    }
+    public void Init(int direction , float duration)
     {
         player = null;
         dir = direction;
+        this.duration = duration;
+        startTime = Time.time;
 
-        if (direction != 1)
+        if (dir != 1)
             transform.Rotate(0, 180, 0);
-        moveTween = transform.DOMove(new Vector2(transform.position.x + direction * 6, transform.position.y), 1);
+    }
 
-        moveTween.OnUpdate(() =>
-        {
-            if (Physics2D.Raycast(transform.position, Vector3.right * dir, 0.5f, 1 << LayerMask.NameToLayer("Ground")))
-            {
-                moveTween.Kill();
-            }
-            float progress = moveTween.ElapsedPercentage();
-            if (progress >= 0.7f)
-            {
-                canControl = false;
-                if (player != null)
-                    player.CancleController();
-            }
-        });
-        moveTween.OnComplete(() => 
-        {
-            Destroy(gameObject); });
+    public void AnimtaionFinishTrigger()
+    {
+        Destroy(gameObject);
     }
 }

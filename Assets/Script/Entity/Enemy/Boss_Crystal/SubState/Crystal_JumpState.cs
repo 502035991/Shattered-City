@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Crystal_JumpState : Crystal_AbilityState
 {
-    public Crystal_JumpState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
+    public Crystal_JumpState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
     {
     }
 }

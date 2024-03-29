@@ -102,7 +102,7 @@ public class Player : Entity
             knockBackUpTween = transform.DOJump(targetPos, power, 1, durection)
                 .OnUpdate(() => 
                 {
-                    if (Physics2D.Raycast(transform.position, Vector3.right * -facingDirection, 1f, 1 << LayerMask.NameToLayer("Ground")))
+                    if (Physics2D.Raycast(transform.position, Vector3.right * -facingDirection, 1f, 1 << LayerMask.NameToLayer("Wall")))
                     {
                         knockBackUpTween.Kill();
                         isControlled = false;
@@ -111,7 +111,7 @@ public class Player : Entity
                 .OnComplete( () => isControlled = false);
         }
     }
-    public void KnockBackMove(int direction, float distance, float durection)
+    public void KnockBackHor(int direction, float distance, float durection)
     {
         if (!isControlled)
         {
@@ -121,7 +121,7 @@ public class Player : Entity
             knockBackMove = transform.DOMove(targetPos,durection)
                 .OnUpdate(() =>
                 {
-                    if (Physics2D.Raycast(transform.position, Vector3.right * -facingDirection, 0.5f, 1 << LayerMask.NameToLayer("Ground")))
+                    if (Physics2D.Raycast(transform.position, Vector3.right * -facingDirection, 0.5f, 1 << LayerMask.NameToLayer("Wall")))
                     {
                         knockBackMove.Kill();
                         isControlled = false;
@@ -145,7 +145,7 @@ public class Player : Entity
 
     }
 
-    public void CancleController()
+    public void CancelControl()
     {
         isControlled =false;
         RB.gravityScale = 3.5f;

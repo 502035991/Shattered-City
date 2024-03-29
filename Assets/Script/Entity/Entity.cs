@@ -82,7 +82,7 @@ public class Entity : MonoBehaviour
     }
     public bool CheckIfTouchingWall()
     {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, entityData.wallCheckDistance, entityData.layerToGround);
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, entityData.wallCheckDistance, entityData.layerToWall);
     }
     #endregion
     #region ¶¯×÷Êä³ö

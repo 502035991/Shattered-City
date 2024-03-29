@@ -12,6 +12,6 @@ public class EnemyAnimationTrigger : MonoBehaviour
     }
 
     private void EnemyAnimationEndCallBack() => enemy.AnimationTrigger();
-    private void EnemySkillEffect() => enemy.AnimationSkillEffect();
+    private void EnemySkillCreatObj() => enemy.AnimationSkillCreatObj();
     private void EnemyAttackCallBack() => enemy.AttackTarget();
 }

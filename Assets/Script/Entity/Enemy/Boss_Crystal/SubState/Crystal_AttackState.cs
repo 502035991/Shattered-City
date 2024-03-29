@@ -9,7 +9,7 @@ public class Crystal_AttackState : Crystal_AbilityState
 {
     private int normalAttackConter = 1;
 
-    public Crystal_AttackState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
+    public Crystal_AttackState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
     {
     }
 
@@ -60,7 +60,7 @@ public class Crystal_AttackState : Crystal_AbilityState
             if (normalAttackConter < 2 && dis < enemyData.Skill[0].distance)
             {
                 player.stats.DoDamage(player.stats, enemyData.Skill[0].Damage);
-                player.KnockBackMove(enemy.facingDirection, 5, 0.5f);
+                player.KnockBackHor(enemy.facingDirection, 5, 0.5f);
             }
             else if(dis < enemyData.Skill[1].distance)
             {
