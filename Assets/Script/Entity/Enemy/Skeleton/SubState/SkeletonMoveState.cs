@@ -50,7 +50,7 @@ public class SkeletonMoveState : SkeletonGroundedState
         try
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.3f), cancellationToken: cancellationTokenSource.Token);
-            enemy.SetFilp(-enemy.facingDirection);
+            enemy.SetFlip(-enemy.facingDirection);
         }
         catch (OperationCanceledException)
         {

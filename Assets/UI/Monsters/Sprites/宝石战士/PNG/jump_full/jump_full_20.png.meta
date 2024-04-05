@@ -103,12 +103,12 @@ TextureImporter:
       name: jump_full_20_0
       rect:
         serializedVersion: 2
-        x: 110
-        y: 0
-        width: 73
-        height: 45
+        x: 116
+        y: 1
+        width: 54
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -123,7 +123,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ca7717a5711eee5459f60e3b9d475951
     internalID: 0
     vertices: []
     indices: 

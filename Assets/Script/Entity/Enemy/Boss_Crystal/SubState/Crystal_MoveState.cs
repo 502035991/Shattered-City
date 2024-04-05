@@ -16,6 +16,7 @@ public class Crystal_MoveState : Crystal_GroundedState
         CheckCanAttack();
     }
 
+
     private void CheckCanAttack()
     {
         float dis = Vector2.Distance(enemy.transform.position, player.transform.position);
@@ -57,5 +58,10 @@ public class Crystal_MoveState : Crystal_GroundedState
     public override void Enter()
     {
         base.Enter();
+    }
+
+    public override void Update()
+    {
+        base.Update();
     }
 }

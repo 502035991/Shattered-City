@@ -10,8 +10,9 @@ public class Player : Entity
     public PlayerInputHandler inputHandler { get; private set; }
     public PlayerStateMachine stateMachine {  get; private set; }
     public SkillManager skill {  get; private set; }
-    [HideInInspector] public bool isControlled = false;
-
+    public bool isControlled {  get; private set; }
+    private float startControlTime;
+    
     #region States
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
@@ -90,17 +91,29 @@ public class Player : Entity
             isControlled = false;            
         }
     }
+    public async void KnockBackUp(int direction ,float duration , float power)
+    {
+        if (!isControlled)
+        {
+            startControlTime = Time.time;
+            SetFlip(-direction);
+            isControlled = true;
+            RB.AddForce(new Vector2(5 *direction , 3) * power, ForceMode2D.Impulse);
+            await UniTask.Delay(TimeSpan.FromSeconds(duration));
+            isControlled = false;
+        }
+    }
     private Sequence knockBackUpTween;
     private Tweener knockBackMove;
-    public void KnockBackUp(int direction , float distance ,float power , float durection)
+    public void KnockBackUp(int direction, float distance, float power, float durection)
     {
         if (!isControlled)
         {
             isControlled = true;
-            SetFilp(-direction);
+            SetFlip(-direction);
             var targetPos = new Vector2(transform.position.x + distance * direction, transform.position.y);
             knockBackUpTween = transform.DOJump(targetPos, power, 1, durection)
-                .OnUpdate(() => 
+                .OnUpdate(() =>
                 {
                     if (Physics2D.Raycast(transform.position, Vector3.right * -facingDirection, 1f, 1 << LayerMask.NameToLayer("Wall")))
                     {
@@ -108,15 +121,17 @@ public class Player : Entity
                         isControlled = false;
                     }
                 })
-                .OnComplete( () => isControlled = false);
+                .OnComplete(() => isControlled = false);
         }
     }
+
+
     public void KnockBackHor(int direction, float distance, float durection)
     {
         if (!isControlled)
         {
             isControlled = true;
-            SetFilp(-direction);
+            SetFlip(-direction);
             var targetPos = new Vector2(transform.position.x + distance * direction, transform.position.y);
             knockBackMove = transform.DOMove(targetPos,durection)
                 .OnUpdate(() =>
@@ -138,7 +153,7 @@ public class Player : Entity
         if (!isControlled)
         {
             isControlled = true;
-            SetFilp(-direction);
+            SetFlip(-direction);
             RB.gravityScale = 0;
         }
         transform.position = new Vector2(pos.x, transform.position.y);

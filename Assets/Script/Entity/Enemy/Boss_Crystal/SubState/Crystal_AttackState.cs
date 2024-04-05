@@ -44,19 +44,19 @@ public class Crystal_AttackState : Crystal_AbilityState
         }
         normalAttackConter += 1;
     }
-
     public override void DoCheck()
     {
         base.DoCheck();
         AttackPlayer();
     }
-
     private void AttackPlayer()
     {
         float dis = Vector2.Distance(enemy.transform.position, player.transform.position);
         if (enemy.isAttacking)
         {
             enemy.UseAttackState();
+            if (!player.CanBeHurt)
+                return;
             if (normalAttackConter < 2 && dis < enemyData.Skill[0].distance)
             {
                 player.stats.DoDamage(player.stats, enemyData.Skill[0].Damage);
@@ -65,6 +65,7 @@ public class Crystal_AttackState : Crystal_AbilityState
             else if(dis < enemyData.Skill[1].distance)
             {
                 player.stats.DoDamage(player.stats, enemyData.Skill[1].Damage);
+                //player.KnockBackUp(enemy.facingDirection, 0.5f, 5);
                 player.KnockBackUp(enemy.facingDirection , 15, 2f ,0.5f);
             }
         }

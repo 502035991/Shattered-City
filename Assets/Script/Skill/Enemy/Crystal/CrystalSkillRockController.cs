@@ -6,35 +6,27 @@ using UnityEngine;
 
 public class CrystalSkillRockController : MonoBehaviour
 {
-    private SpriteRenderer sr;
-    private Animator anim;
     private Rigidbody2D rb;
 
     private Player player;
+
+    private bool Controlled;
     private int dir;
-    private Tween moveTween;
-    private bool canControl;
-
-
     private float duration;
     private float startTime;
-    [SerializeField] private float speed;
+    private float speed =0;
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
     private void OnEnable()
     {
-        canControl = true;
-        //rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
     private void Update()
     {
         if(Time.time < startTime + duration)
         {
-            if(Physics2D.Raycast(transform.position,Vector2.right * dir , 1 << LayerMask.NameToLayer("Wall")))
+            if(Physics2D.Raycast(transform.position , Vector2.right * dir ,1, 1 << LayerMask.NameToLayer("Wall")))
             {
                 rb.velocity = Vector2.zero;
             }
@@ -45,29 +37,33 @@ public class CrystalSkillRockController : MonoBehaviour
 
             if (player != null)
             {
-                player.ControllPlyer(transform.position, dir);
+                Controlled = true;
+                player.ControllPlyer(new Vector2(transform.position.x + dir *0.5f , transform.position.y), dir);
             }
         }
         else
         {
             rb.velocity = Vector2.zero;
-            canControl = false;
-
-            if(player!= null)
+            if(player!= null && Controlled)
             {
+                Controlled = false;
                 player.CancelControl();
             }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (player != null)
+            return;
+
         player = collision.GetComponent<Player>();
     }
-    public void Init(int direction , float duration)
+    public void Init(int direction , float duration , float speed)
     {
         player = null;
         dir = direction;
         this.duration = duration;
+        this.speed = speed;
         startTime = Time.time;
 
         if (dir != 1)

@@ -22,7 +22,7 @@ public class Crystal_GroundedState : EnemyState
     private void CheckFilp()
     {
         if(!enemy.CheckIsOnCooldown(CrystalCD.BaseAttack1) || !enemy.CheckIsOnCooldown(CrystalCD.BaseAttack2))
-            enemy.SetFilp(player.transform.position.x < enemy.transform.position.x ? -1 : 1);
+            enemy.SetFlip(player.transform.position.x < enemy.transform.position.x ? -1 : 1);
     }
 
 }

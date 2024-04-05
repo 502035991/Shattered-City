@@ -23,7 +23,7 @@ public class PlayerMoveState : PlayerGroundedState
     {
         base.PhysicUpdate();
         player.SetVelocityX(playerData.movementVelocity * xInput);
-        player.SetFilp(xInput);
+        player.SetFlip(xInput);
     }
 
     public override void Update()

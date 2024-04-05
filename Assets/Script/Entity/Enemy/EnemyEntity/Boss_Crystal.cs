@@ -21,24 +21,40 @@ public class Boss_Crystal : Enemy
     //攻击
     public Crystal_SkillState1 skillState1{ get; private set; }
     public Crystal_AttackState attackState { get; private set; }
+    public Crystal_DeadState deadState { get; private set; }
+    public Crystal_ChangePhaseState changePhaseState { get; private set; }
     #endregion
     #region 变量
     public Phase currentPhase {  get; private set; }
     [SerializeField]
     private Transform skillRockPos;
+    public AnimationCurve jumpCurve;
     #endregion
+
+    public float jumpDuration;
+    public float jumpMaxHeight;
+    protected override void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            stateMachine.ChangeState(jumpState);
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
         moveState = new Crystal_MoveState(stateMachine, enemyData, this, "Move");
         idleState = new Crystal_IdleSate(stateMachine, enemyData, this, "Idle");
-        landState = new Crystal_LandState(stateMachine, enemyData, this, "Land");
-
+        landState = new Crystal_LandState(stateMachine, enemyData, this, "Land", GetCurrentCD);
          
         inAirState = new Crystal_InAirState(stateMachine, enemyData, this, "Jump");
-        jumpState = new Crystal_JumpState(stateMachine, enemyData, this, "Jump", GetCurrentAttack);
-        attackState = new Crystal_AttackState(stateMachine, enemyData, this, "Attack", GetCurrentAttack);
-        skillState1 = new Crystal_SkillState1(stateMachine, enemyData, this, "Skill", GetCurrentAttack);
+        jumpState = new Crystal_JumpState(stateMachine, enemyData, this, "Jump", GetCurrentCD);
+        attackState = new Crystal_AttackState(stateMachine, enemyData, this, "Attack", GetCurrentCD);
+        skillState1 = new Crystal_SkillState1(stateMachine, enemyData, this, "Skill", GetCurrentCD);
+        changePhaseState = new Crystal_ChangePhaseState(stateMachine, enemyData, this,"ChangePhase", GetCurrentCD);
+
+        deadState = new Crystal_DeadState(stateMachine, enemyData, this, "Die", GetCurrentCD);
 
         //deadState = new SlimeDeadState(stateMachine, enemyData, this, "Dead");
     }
@@ -67,7 +83,7 @@ public class Boss_Crystal : Enemy
     /// <summary>
     /// 当前攻击/技能 计入CD
     /// </summary>
-    private void GetCurrentAttack(CrystalCD attackName)
+    private void GetCurrentCD(CrystalCD attackName)
     {
         if (!checkCDs.Contains(attackName))
         {
@@ -102,9 +118,16 @@ public class Boss_Crystal : Enemy
         return obj1;
     }
     #endregion
-    public void SetPhase(int va)
+    public void SetPhase(Phase va)
     {
-        currentPhase = (Phase)va;
+        currentPhase = va;
+    }
+    public override void Die()
+    {
+        if(currentPhase == Phase.Two)
+            stateMachine.ChangeState(deadState);
+        else
+            stateMachine.ChangeState(changePhaseState);
     }
     public override Collider2D[] GetAttackTarget()
     {

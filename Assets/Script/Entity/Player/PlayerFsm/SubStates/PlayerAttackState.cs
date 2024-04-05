@@ -70,15 +70,13 @@ public class PlayerAttackState : PlayerAbilityState
     public override async void AnimationFinishTrigger()
     {
         float startTime = Time.time;
-        float currentTime = startTime;
         bool isAttacking = false;
-
         await WaitForAnimationCompletion();
+        player.inputHandler.UseAttackInput();
 
         normalAttackConter++;
-        while (currentTime - startTime < 0.45f)
+        while (Time.time - startTime < 0.45f)
         {
-            currentTime = Time.time;
             if (player.inputHandler.isAttack)
             {
                 //标记是否进行了攻击
@@ -103,6 +101,7 @@ public class PlayerAttackState : PlayerAbilityState
     public override void Exit()
     {
         base.Exit();
-        player.inputHandler.UseAttackInput();
+        if (player.inputHandler.isAttack)
+            player.inputHandler.UseAttackInput();
     }
 }

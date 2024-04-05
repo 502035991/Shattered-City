@@ -30,12 +30,12 @@ public class PlayerDashState : PlayerAbilityState
         if (timer < 0)
         {
             isAbilityDone = true;
-            player.SetHurtState(true);
+            player.SetHurtState(true);//ÎÞµÐ½áÊø
         }
         else
         {
             player.SetVelocity(new Vector2(playerData.dashVelocity * player.facingDirection, 0));
-            player.SetHurtState(false);
+            player.SetHurtState(false);//ÎÞµÐ
         }
     }
     public override void Update()

@@ -105,11 +105,11 @@ public class Entity : MonoBehaviour
         currentVelocity = workSpace;
     }
     #endregion
-    public void SetFilp(int xInput)
+    public void SetFlip(int xInput)
     {
         if (xInput != 0 && xInput != facingDirection)
         {
-            Filp();
+            Flip();
         }
     }
     #region Attack
@@ -130,7 +130,7 @@ public class Entity : MonoBehaviour
         //entityFX.FlashFX().Forget();
     }
     #endregion
-    internal void Filp()
+    internal void Flip()
     {
         facingDirection *= -1;
         transform.Rotate(0, 180, 0);

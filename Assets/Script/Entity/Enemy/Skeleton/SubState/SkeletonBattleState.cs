@@ -17,7 +17,7 @@ public class SkeletonBattleState : SkeletonGroundedState
         RaycastHit2D hitResult;
         if (enemy.CheckIfPlayerToLine(out hitResult))
         {
-            enemy.SetFilp(hitResult.point.x < enemy.transform.position.x ? -1 : 1);
+            enemy.SetFlip(hitResult.point.x < enemy.transform.position.x ? -1 : 1);
         }
         attackTimer -= Time.deltaTime;
     }

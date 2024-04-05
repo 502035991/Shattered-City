@@ -57,7 +57,7 @@ public class PlayerInAirState : PlayerState
         base.PhysicUpdate();
         if(xInput !=  0)
         {
-            player.SetFilp(xInput);
+            player.SetFlip(xInput);
             player.SetVelocityX(xInput * playerData.movementVelocity);
         }
     }

@@ -15,6 +15,7 @@ public class EnemyState
     protected bool isDead =false;
 
 
+    
     public EnemyState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName)
     {
         this.enemyStateMachine = enemyStateMachine;
@@ -33,7 +34,7 @@ public class EnemyState
         }
     }
     public virtual void Update()
-    {
+    {            
     }
     public virtual void DoCheck()
     {

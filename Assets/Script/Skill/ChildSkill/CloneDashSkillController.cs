@@ -18,7 +18,7 @@ public class CloneDashSkillController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var target = collision.gameObject.GetComponent<Enemy>();
-        if (target)
+        if (target!=null && target.CanBeHurt)
         {
             anim.SetBool("CloneAttack", true);
             target.KnockBack(Vector2.zero, 0, 0.3f).Forget();
@@ -40,7 +40,7 @@ public class CloneDashSkillController : MonoBehaviour
             .SetEase(Ease.Linear)
             .OnUpdate(() =>
             {
-                if (Physics2D.Raycast(transform.position, Vector3.right * facingDir ,0.5f, 1 << LayerMask.NameToLayer("Ground")))
+                if (Physics2D.Raycast(transform.position, Vector3.right * facingDir ,0.5f, 1 << LayerMask.NameToLayer("Wall")))
                 {
                     moveTween.Kill();
                     FadeFunction();

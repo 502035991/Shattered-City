@@ -60,9 +60,20 @@ public abstract class Enemy : Entity
             }
         }
     }
-    public bool CheckIfPlayerToCircle()
+    public bool CheckIfPlayerToCircle(out Collider2D hitResult , float radius)
     {
-        return true;
+        var hitTarget = Physics2D.OverlapCircle(transform.position,radius,enemyData.layerToPlayer);
+        if (hitTarget != null)
+        {
+            hitResult = hitTarget;
+            return true;
+        }
+        else
+        {
+            hitResult = default;
+            return false;
+        }
+
     }
 
     #endregion

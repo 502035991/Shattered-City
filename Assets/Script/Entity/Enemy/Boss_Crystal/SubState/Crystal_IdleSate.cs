@@ -24,6 +24,7 @@ public class Crystal_IdleSate : Crystal_GroundedState
                     enemyStateMachine.ChangeState(enemy.moveState);
                     break;
                 case Phase.Two:
+                    enemyStateMachine.ChangeState(enemy.jumpState);
                     break;
                 case Phase.Three:
                     break;

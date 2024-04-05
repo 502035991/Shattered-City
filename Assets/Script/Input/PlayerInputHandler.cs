@@ -68,15 +68,18 @@ public class PlayerInputHandler : MonoBehaviour
         if (player.isControlled)
             return;
 
-        if (context.started && !isDash && !isAttack && !isAirAttack && SkillManager.instance.cloneDash.CanUseSkill())
+        if (context.started && !isDash && !isAttack && !isAirAttack)
         {
-            isCloneDsah = true;
-            isCloneDashEnable = false;
+            if(SkillManager.instance.cloneDash.CanUseSkill())
+            {
+                isCloneDsah = true;
+                isCloneDashEnable = false;
+            }
+            else if(SkillManager.instance.cloneDash.ObjStats())
+            {
+                isCloneDashEnable = true;
+            }
         }      
-        else if(context.started && SkillManager.instance.cloneDash.ObjStats())
-        {
-            isCloneDashEnable = true;
-        }
     }
     public void OnTimeStop(InputAction.CallbackContext context)
     {

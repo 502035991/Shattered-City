@@ -12,13 +12,13 @@ public class Crystal_SkillState1 : Crystal_AbilityState
         var controller = obj.GetComponent<CrystalSkillRockController>();
 
 
-        controller.Init(enemy.facingDirection , 0.5f);
+        controller.Init(enemy.facingDirection , 0.7f , 10f);
 
     }
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
-        enemyStateMachine.ChangeState(enemy.idleState, 2f);
+        enemyStateMachine.ChangeState(enemy.idleState, 3.5f);
     }
     public override void Exit()
     {

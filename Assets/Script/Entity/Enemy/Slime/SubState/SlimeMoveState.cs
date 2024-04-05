@@ -33,7 +33,7 @@ public class SlimeMoveState : SlimeBaseState
         base.Update();
         if (!isTouchingGround || isTouchingWall)
         {
-            enemy.SetFilp(-enemy.facingDirection);
+            enemy.SetFlip(-enemy.facingDirection);
         }
         else if(enemy.CheckIfPlayerToLine(out _))
         {
