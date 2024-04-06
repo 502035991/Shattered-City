@@ -29,7 +29,7 @@ MonoBehaviour:
   attackCD: 0
   Skill:
   - name: 0
-    CD: 1
+    CD: 1.5
     distance: 3
     Damage: 2
     obj: {fileID: 0}

@@ -25,7 +25,7 @@ public class EnemyState
     }
     public virtual void Enter()
     {
-         //Debug.Log("enter " + enemyStateMachine.currentState + "  " + animName );
+        Debug.Log("enter " + enemyStateMachine.currentState + "  " + animName );
         baseEnemy.anim.SetBool(animName, true);
 
         if (player == null)
@@ -54,6 +54,10 @@ public class EnemyState
 
     }
     public virtual void AnimationSkillEffect()
+    {
+
+    }
+    public virtual void CheckAttackTarget()
     {
 
     }

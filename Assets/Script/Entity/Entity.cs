@@ -10,13 +10,6 @@ public enum Direction
     left = -1,
     right = 1,
 };
-public enum Phase//½×¶Î
-{ 
-    One =1,
-    Two =2,
-    Three =3,
-}
-
 public class Entity : MonoBehaviour
 {
     #region Components

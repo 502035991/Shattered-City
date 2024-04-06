@@ -1,8 +1,5 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class Crystal_IdleSate : Crystal_GroundedState
 {
@@ -21,7 +18,7 @@ public class Crystal_IdleSate : Crystal_GroundedState
             switch (enemy.currentPhase)
             {
                 case Phase.One:
-                    enemyStateMachine.ChangeState(enemy.moveState);
+                    enemyStateMachine.ChangeState(enemy.oneBattleState);
                     break;
                 case Phase.Two:
                     enemyStateMachine.ChangeState(enemy.jumpState);

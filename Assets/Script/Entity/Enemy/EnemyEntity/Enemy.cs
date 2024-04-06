@@ -1,7 +1,12 @@
 using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
-
+public enum Phase//½×¶Î
+{
+    One = 1,
+    Two = 2,
+    Three = 3,
+}
 public abstract class Enemy : Entity
 {    
     public EnemyStateMachine stateMachine {  get; private set; }
@@ -84,6 +89,10 @@ public abstract class Enemy : Entity
     public void AnimationSkillCreatObj()
     {
         stateMachine.currentState.AnimationSkillEffect();
+    }
+    public void AnimationCheckAttackTarget()
+    {
+        stateMachine.currentState.CheckAttackTarget();
     }
     public virtual async UniTask KnockBack(Vector2 direction, float magnitude, float duraton)
     {

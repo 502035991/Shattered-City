@@ -6,8 +6,8 @@ public enum CrystalCD
 {
     BaseAttack1,
     BaseAttack2,
-    Skill1,
-    Skill2,
+    Skill_1,
+    Skill_2,
 }
 public class Boss_Crystal : Enemy
 {
@@ -16,7 +16,7 @@ public class Boss_Crystal : Enemy
     public Crystal_InAirState inAirState { get; private set; }
     public Crystal_JumpState jumpState { get; private set; }
     public Crystal_LandState landState { get; private set; }
-    public Crystal_MoveState moveState { get; private set; }
+    public Crystal_PhaseOneBattleState oneBattleState { get; private set; }
 
     //¹¥»÷
     public Crystal_SkillState1 skillState1{ get; private set; }
@@ -38,15 +38,15 @@ public class Boss_Crystal : Enemy
         base.Update();
         if (Input.GetKeyDown(KeyCode.W))
         {
-            stateMachine.ChangeState(jumpState);
+            currentPhase = Phase.Two;
         }
     }
     protected override void Awake()
     {
         base.Awake();
-        moveState = new Crystal_MoveState(stateMachine, enemyData, this, "Move");
+        oneBattleState = new Crystal_PhaseOneBattleState(stateMachine, enemyData, this, "Move");
         idleState = new Crystal_IdleSate(stateMachine, enemyData, this, "Idle");
-        landState = new Crystal_LandState(stateMachine, enemyData, this, "Land", GetCurrentCD);
+        landState = new Crystal_LandState(stateMachine, enemyData, this, "Land");
          
         inAirState = new Crystal_InAirState(stateMachine, enemyData, this, "Jump");
         jumpState = new Crystal_JumpState(stateMachine, enemyData, this, "Jump", GetCurrentCD);

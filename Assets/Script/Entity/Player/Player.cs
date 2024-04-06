@@ -124,8 +124,6 @@ public class Player : Entity
                 .OnComplete(() => isControlled = false);
         }
     }
-
-
     public void KnockBackHor(int direction, float distance, float durection)
     {
         if (!isControlled)

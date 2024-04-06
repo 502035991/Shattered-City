@@ -19,6 +19,7 @@ public class Crystal_AbilityState : EnemyState
     {
         base.Enter();
         isAbilityDone = false;
+        enemy.SetFlip(player.transform.position.x < enemy.transform.position.x ? -1 : 1);
     }
     public override void DoCheck()
     {
