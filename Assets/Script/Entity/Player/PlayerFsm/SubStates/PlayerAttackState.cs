@@ -28,8 +28,6 @@ public class PlayerAttackState : PlayerAbilityState
     public override void DoCheck()
     {
         base.DoCheck();
-        if (player.isControlled)
-            stateMachine.ChangeState(player.hitState);
         Attack();
     }
     private void Attack()
@@ -45,7 +43,7 @@ public class PlayerAttackState : PlayerAbilityState
             foreach (var item in coll)
             {
                 Enemy target = item.GetComponent<Enemy>();
-                if (target != null && target.CanBeHurt)
+                if (target != null)
                 {
 
                     if (normalAttackConter == 0)

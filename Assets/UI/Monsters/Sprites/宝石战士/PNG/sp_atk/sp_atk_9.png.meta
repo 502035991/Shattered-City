@@ -49,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,78 +112,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sp_atk_9_0
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 0
-        width: 117
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d4b58402fe30fffd0800000000000000
-      internalID: -2306120158616724659
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sp_atk_9_1
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 61
-        width: 22
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4dda9e9fe21518380800000000000000
-      internalID: -8970799720542130732
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sp_atk_9_2
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 66
-        width: 15
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b117ea5b807b89690800000000000000
-      internalID: -7595119523524611813
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: sp_atk_9_3
       rect:
         serializedVersion: 2
-        x: 130
-        y: 0
-        width: 48
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 131
+        y: 1
+        width: 46
+        height: 51
+      alignment: 9
+      pivot: {x: 0.41, y: 0.425}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,22 +133,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sp_atk_9_4
+      name: sp_atk_9_0
       rect:
         serializedVersion: 2
-        x: 271
-        y: 37
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 177
+        y: 1
+        width: 111
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bd439bf6ff4b3c7e0800000000000000
-      internalID: -1746353221305551653
+      spriteID: 2c237e966f4b2b64c9424d32c3b3ee2d
+      internalID: -2306120158616724659
       vertices: []
       indices: 
       edges: []
@@ -219,14 +156,20 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ab0dcaa252eb7d143ae7233039e6c969
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sp_atk_9_0: -2306120158616724659
+      sp_atk_9_1: -8970799720542130732
+      sp_atk_9_2: -7595119523524611813
+      sp_atk_9_3: -4776491362072149756
+      sp_atk_9_4: -1746353221305551653
+      sp_atk_9_5: 519381974
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

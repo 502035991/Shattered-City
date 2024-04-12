@@ -15,10 +15,11 @@ public abstract class Enemy : Entity
     [SerializeField]
     protected Transform playerCheck;
 
+
     [SerializeField]
     private bool canControl;
-    [HideInInspector] public CapsuleCollider2D coll;
-    [HideInInspector] public bool isControlled = false;
+    public CapsuleCollider2D coll {  get; private set; }
+
     #region CallBack
     protected override void Awake()
     {
@@ -89,10 +90,6 @@ public abstract class Enemy : Entity
     public void AnimationSkillCreatObj()
     {
         stateMachine.currentState.AnimationSkillEffect();
-    }
-    public void AnimationCheckAttackTarget()
-    {
-        stateMachine.currentState.CheckAttackTarget();
     }
     public virtual async UniTask KnockBack(Vector2 direction, float magnitude, float duraton)
     {

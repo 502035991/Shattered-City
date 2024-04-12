@@ -13,8 +13,6 @@ public class EnemyState
     private string animName;
 
     protected bool isDead =false;
-
-
     
     public EnemyState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Enemy enemy, string animName)
     {
@@ -38,8 +36,8 @@ public class EnemyState
     }
     public virtual void DoCheck()
     {
-        if (baseEnemy.isControlled && !isDead)
-            enemyStateMachine.ChangeState(baseEnemy.GetHitState());
+/*        if (baseEnemy.isControlled && !isDead)
+            enemyStateMachine.ChangeState(baseEnemy.GetHitState());*/
     }
     public virtual void PhysicUpdate()
     {
@@ -49,20 +47,17 @@ public class EnemyState
         //Debug.Log("exit "+ enemyStateMachine.currentState +"  "+ animName);
         baseEnemy.anim.SetBool(animName, false);
     }
+
     public virtual void AnimationFinishTrigger()
     {
-
+        //动画结束事件
     }
     public virtual void AnimationSkillEffect()
     {
-
-    }
-    public virtual void CheckAttackTarget()
-    {
-
+        //动画发技能帧事件
     }
     public virtual void SetAdditionalData(object value)
     {
-
+        //状态复用 传不同参数进行控制
     }
 }

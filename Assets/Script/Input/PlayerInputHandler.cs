@@ -21,11 +21,6 @@ public class PlayerInputHandler : MonoBehaviour
     public bool isCloneDashEnable {  get; private set; }
     public bool isTimeStopEnable {  get; private set; }
 
-    private Player player;
-    private void Start()
-    {
-        player = GetComponentInParent<Player>();        
-    }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
@@ -35,21 +30,30 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void OnJumpInput(InputAction.CallbackContext context) 
     { 
-        if(context.started && !isDash &&!isAttack && !isAirAttack && !player.isControlled)
+        if(context.started)
         {
             jumpInput = true;
+        }
+        else if(context.canceled)
+        {
+
+            jumpInput = false;
         }
     }
     public void OnDashInput(InputAction.CallbackContext context)
     {
-         if (context.started && !isAttack && !isAirAttack && SkillManager.instance.dash.CanUseSkill() && !player.isControlled)
+         if (context.started && SkillManager.instance.dash.CanUseSkill())
         { 
             isDash = true;
+        }
+         else if(context.canceled)
+        {
+            isDash = false;
         }
     }
     public void OnNormalAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !isDash && !isCloneDashEnable && !player.isControlled)
+        if (context.started)
         {
             if(!isAir && !isAirAttack)
             {
@@ -60,15 +64,16 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 isAirAttack = true;
             }
-
+        }
+        else if(context.canceled)
+        {
+            isAttack = false;
+            isAirAttack = false;
         }
     }
     public void OnCloneDash(InputAction.CallbackContext context)
     {
-        if (player.isControlled)
-            return;
-
-        if (context.started && !isDash && !isAttack && !isAirAttack)
+        if (context.started)
         {
             if(SkillManager.instance.cloneDash.CanUseSkill())
             {
@@ -79,7 +84,12 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 isCloneDashEnable = true;
             }
-        }      
+        }     
+        else if(context.canceled)
+        {
+            isCloneDashEnable = false;
+            isCloneDsah =false;
+        }
     }
     public void OnTimeStop(InputAction.CallbackContext context)
     {

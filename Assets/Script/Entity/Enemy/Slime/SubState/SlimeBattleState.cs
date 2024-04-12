@@ -21,7 +21,7 @@ public class SlimeBattleState : SlimeBaseState
         base.DoCheck();
         CheckFilp();
 
-        if (!enemy.isControlled && attackTimer < 0)
+/*        if (!enemy.isControlled && attackTimer < 0)
         {
             if (IsAttackedToPlayer())//¼ì²âÍæ¼ÒÊÇ·ñÔÚ¹¥»÷·¶Î§ÄÚ
             {
@@ -40,7 +40,7 @@ public class SlimeBattleState : SlimeBaseState
                 enemy.SetVelocityX(-enemy.facingDirection * enemyData.movementVelocity);            
             else            
                 enemy.SetVelocityX(enemy.facingDirection * enemyData.movementVelocity);            
-        }
+        }*/
     }
     public override void Update()
     {

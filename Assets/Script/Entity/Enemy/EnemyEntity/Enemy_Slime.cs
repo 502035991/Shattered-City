@@ -45,7 +45,7 @@ public class Enemy_Slime : Enemy
         Vector2 rightBoundary = playerCheck.position + Vector3.right * da.playerCheckLength;
 
         Gizmos.DrawWireSphere(attackCheck.position, entityData.attackDistance);//¼ì²â¹¥»÷¾àÀë
-        Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);
+        Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckDistance);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawRay(wallCheck.position, entityData.wallCheckDistance * Vector3.right);

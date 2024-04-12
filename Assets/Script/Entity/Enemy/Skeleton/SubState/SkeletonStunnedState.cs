@@ -11,10 +11,10 @@ public class SkeletonStunnedState : SkeletonGroundedState
     public override void DoCheck()
     {
         base.DoCheck();
-        if(!enemy.isControlled && enemy.CheckIfTouchingGround())
+/*        if(!enemy.isControlled && enemy.CheckIfTouchingGround())
         {
             enemy.stateMachine.ChangeState(enemy.battleState , 0);
-        }
+        }*/
     }
 
     public override void Enter()

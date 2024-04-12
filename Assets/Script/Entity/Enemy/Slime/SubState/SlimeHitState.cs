@@ -10,9 +10,9 @@ public class SlimeHitState : SlimeBaseState
     public override void DoCheck()
     {
         base.DoCheck();
-        if (!enemy.isControlled && enemy.CheckIfTouchingGround())
+/*        if (!enemy.isControlled && enemy.CheckIfTouchingGround())
         {
             enemy.stateMachine.ChangeState(enemy.battleState ,true);
-        }
+        }*/
     }
 }

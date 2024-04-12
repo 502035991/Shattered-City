@@ -46,7 +46,7 @@ public class Enemy_Skeleton : Enemy
 
     public override UniTask KnockBack(Vector2 direction, float magnitude ,float duration)
     {
-        isControlled = false;
+        //isControlled = false;
         return base.KnockBack(direction, magnitude, duration);
     }
     public override void Die()

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,11 +16,35 @@ public class EnemyData : BaseData
     [Serializable]
     public struct FruitPrefab
     {
-        public CrystalCD name;
+        public CrystalAttackMenu name;
         public float CD;
         public float distance;
         public int Damage;
+        [Header("ШЈжи")]
+        public float weight;
         public GameObject obj;
     }
-    public FruitPrefab[] Skill;
+    public FruitPrefab[] AllAttack;
+    private FruitPrefab[] _allAttack;
+
+    private Dictionary<CrystalAttackMenu, FruitPrefab> skillDictionary;
+    public Dictionary<CrystalAttackMenu, FruitPrefab> Skill
+    {
+        get
+        {
+            if (skillDictionary == null)
+            {
+                _allAttack = new FruitPrefab[AllAttack.Length];
+                Array.Copy(AllAttack, _allAttack, AllAttack.Length);
+                Array.Sort(_allAttack, (a, b) => b.weight.CompareTo(a.weight));
+
+                skillDictionary = new Dictionary<CrystalAttackMenu, FruitPrefab>();
+                foreach (var attack in _allAttack)
+                {
+                    skillDictionary[attack.name] = attack;
+                }
+            }
+            return skillDictionary;
+        } 
+    }
 }

@@ -18,10 +18,10 @@ public class Entity : MonoBehaviour
     public EntityFX entityFX { get; private set; }
     public CharacterStats stats { get; private set; }
     #endregion
-
-    private Vector2 workSpace;
+    private Vector2 workspace;
     public Vector2 currentVelocity { get; private set; }
     public int facingDirection { get; private set; }
+    public bool isAttacking { get; private set; }
 
     [SerializeField]
     protected Transform groundCheck;
@@ -36,10 +36,8 @@ public class Entity : MonoBehaviour
     [SerializeField]
     private Direction imgDirection;
 
-    protected bool isEnemy = true;
-
-    [HideInInspector] public bool isAttacking = false;
-    internal bool CanBeHurt = true;
+    protected bool CanBeHurt = true;
+    protected bool isControlled = false;
 
     public Action onFlipped;
 
@@ -71,33 +69,33 @@ public class Entity : MonoBehaviour
     #region Check
     public bool CheckIfTouchingGround()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, entityData.groundCheckRadius, entityData.layerToGround);
+        return Physics2D.Raycast(groundCheck.position, Vector2.down, entityData.groundCheckDistance, entityData.layerToGround);
     }
     public bool CheckIfTouchingWall()
     {
         return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, entityData.wallCheckDistance, entityData.layerToWall);
     }
+    public bool CheckIfTouchingGroudToHeight(float height)
+    {
+        return Physics2D.Raycast(groundCheck.position , Vector2.down, height, entityData.layerToGround);
+    }
     #endregion
     #region ¶¯×÷Êä³ö
     public void SetVelocityX(float velocity)
     {
-        workSpace.Set(velocity, currentVelocity.y);
-        RB.velocity = new Vector2(velocity, currentVelocity.y);
-        currentVelocity = workSpace;
+        workspace.Set(velocity, currentVelocity.y);
+        SetFinalVelocity();
     }
     public void SetVelocityY(float velocity)
     {
-        workSpace.Set(currentVelocity.x, velocity);
-        RB.velocity = workSpace;
-        currentVelocity = workSpace;
+        workspace.Set(currentVelocity.x, velocity);
+        SetFinalVelocity();
     }
     public void SetVelocity(Vector2 velocity)
     {
-        workSpace = velocity;
-        RB.velocity = workSpace;
-        currentVelocity = workSpace;
+        workspace = velocity;
+        SetFinalVelocity();
     }
-    #endregion
     public void SetFlip(int xInput)
     {
         if (xInput != 0 && xInput != facingDirection)
@@ -105,6 +103,25 @@ public class Entity : MonoBehaviour
             Flip();
         }
     }
+    private void SetFinalVelocity()
+    {
+        if(!isControlled)
+        {
+            RB.velocity = workspace;
+            currentVelocity = workspace;
+        }    
+    }
+    internal void Flip()
+    {
+        if (!isControlled)
+        {
+            facingDirection *= -1;
+            transform.Rotate(0, 180, 0);
+
+            onFlipped?.Invoke();
+        }
+    }
+    #endregion
     #region Attack
     public virtual Collider2D[] GetAttackTarget()
     {
@@ -116,20 +133,12 @@ public class Entity : MonoBehaviour
         isAttacking = true;
     }
     public void UseAttackState() => isAttacking = false;
-
     public void SetHurtState(bool value) => CanBeHurt = value;
     public virtual void TakeDamageEffect()
     {
         //entityFX.FlashFX().Forget();
     }
     #endregion
-    internal void Flip()
-    {
-        facingDirection *= -1;
-        transform.Rotate(0, 180, 0);
-
-        onFlipped?.Invoke();
-    }
     public virtual void Die()
     {
 

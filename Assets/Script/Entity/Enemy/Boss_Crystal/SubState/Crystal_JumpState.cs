@@ -4,119 +4,137 @@ using UnityEngine;
 
 public class Crystal_JumpState : Crystal_AbilityState
 {
-    public Crystal_JumpState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
+    private Dictionary<float, float> Height_GravityValues = new Dictionary<float, float>();//高度_速度
+    private int JumpCounter;
+    private Vector2 targetPosition;
+    private Vector2 startPos;
+
+    public Crystal_JumpState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName, Action<CrystalAttackMenu> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
     {
 
     }
     public override void Enter()
     {
         base.Enter();
-        if (JumpCounter > 2)
-            JumpCounter = 1;
-        //enemy.anim.SetInteger("JumpCounter", JumpCounter);
+        enemy.anim.SetInteger("JumpCounter", JumpCounter);
 
         targetPosition = player.transform.position;
         startPos = enemy.transform.position;
 
-        GetHeightValues();
-        jump(JumpCounter == 1? 10 : 15);//一段跳和二段跳的高度
+        CalculateJump(JumpCounter);
         isAbilityDone = true;
     }
-    private int JumpCounter = 1;
+    private void CalculateJump(int jumpCounter)
+    {
+        float jumpDuration = UnityEngine.Random.Range(0.9f, 1.3f);
+        float maxHeight = UnityEngine.Random.Range(7, 15);
 
-    private Vector2 targetPosition;
-    private Vector2 startPos;
+        float gravity = 0f;
 
-    private float jumpDuration = 1.2f;
-
-    private Dictionary<float,float> Height_GravityValues = new();//高度 重力
-    List<float> sortedHeights = new List<float>();
-
-    //预先计算重力值在范围[0, 100]内的每个值所对应的最大高度 差距1
-    private void GetHeightValues()
+        switch (jumpCounter)
+        {           
+            case 1:
+                GetHeightValues(jumpDuration);
+                gravity = IterationNearestGravity(GetNearestGravity(maxHeight), jumpDuration, maxHeight);
+                ac?.Invoke(CrystalAttackMenu.Jump_1);
+                break;
+            case 2:
+                GetHeightValues(jumpDuration);
+                gravity = IterationNearestGravity(GetNearestGravity(maxHeight), jumpDuration, maxHeight);
+                ac?.Invoke(CrystalAttackMenu.Jump_2);
+                break;
+            default:
+                break;
+        }
+        Jump(gravity, jumpDuration);
+    }
+    private void Jump(float gravity, float jumpDuration)
+    {
+        Vector2 rbVelocity;
+        CalculateMaxHeightToVelocity(Physics2D.gravity * gravity, jumpDuration, out rbVelocity);
+        enemy.RB.gravityScale = gravity;
+        //enemy.SetVelocity(rbVelocity);
+        enemy.RB.AddForce(rbVelocity, ForceMode2D.Impulse);
+    }
+    //预先计算重力值在范围[1, 100]内的每个值所对应的最大高度 差距1
+    private void GetHeightValues(float jumpDuration)
     {
         Height_GravityValues.Clear();
-        sortedHeights.Clear();
-        for (int i = 0; i <= 100; i++)
+        for (int i = 1; i <= 100; i++)
         {
             float gravity = i;
-            Vector2 rbVelocity = (targetPosition - startPos) / jumpDuration - 0.5f * Physics2D.gravity * gravity * jumpDuration;//求初始速度
-            float maxHeight = (rbVelocity.y * rbVelocity.y) / (2 * -(Physics2D.gravity * gravity).y) * 0.90f;//求最大高度
+            var gravitySum = Physics2D.gravity * gravity;
+
+            Vector2 rbVelocity = (targetPosition - startPos) / jumpDuration - 0.5f * gravitySum * jumpDuration;//求初始速度
+            float maxHeight = (rbVelocity.y * rbVelocity.y) / (2 * -(gravitySum).y);//求最大高度
 
             Height_GravityValues.Add(maxHeight, gravity);
-
-            sortedHeights = new List<float>(Height_GravityValues.Keys);//排序后的高度列表
-            sortedHeights.Sort();
         }
     }
-    private void jump(float _maxHeight)
-    {
-        int iterationCounter = 0;
-        float precision = 0.3f;
-        Vector2 rbVelocity;
-
-        //初始猜测重力
-        float guessGravity = GetNearestGravity(_maxHeight);
-
-        // 计算初始速度所能达到的最大高度
-        float maxHeight = CalculateMaxHeight(Physics2D.gravity * guessGravity, out rbVelocity);
-
-        while (Mathf.Abs(maxHeight - _maxHeight) > precision && iterationCounter < 100)
-        {
-            iterationCounter++;
-
-            //迭代计算最接近的重力值
-            maxHeight = CalculateMaxHeight(Physics2D.gravity * guessGravity, out rbVelocity);
-
-            if (maxHeight > _maxHeight)
-            {
-                guessGravity -= 0.01f;
-            }
-            else
-            {
-                guessGravity += 0.01f;
-            }
-        }
-        enemy.RB.gravityScale = guessGravity;
-        enemy.SetVelocity(rbVelocity);
-    }
+    //找到与目标高度差距最小的预设重力
     private float GetNearestGravity(float targetHeight)
     {
-        // 二分查找最接近目标高度的最大高度
-        int left = 0;
-        int right = sortedHeights.Count - 1;
-        while (left <= right)
-        {
-            int mid = (left + right) / 2;
-            float midHeight = sortedHeights[mid];
+        float nearestGravity = 0f;
+        float minDifference = float.MaxValue;
 
-            float difference = Mathf.Abs(midHeight - targetHeight);
-            if (difference <= 1)
+        foreach (var kvp in Height_GravityValues)
+        {
+            float difference = Mathf.Abs(kvp.Key - targetHeight);
+            if (difference < minDifference)
             {
-                return mid;
+                minDifference = difference;
+                nearestGravity = kvp.Value;
             }
-            else if (midHeight < targetHeight)
+        }
+        return nearestGravity;
+    }
+    //计算抛物线的初始速度
+    private void CalculateMaxHeightToVelocity(Vector2 gravitySum, float jumpDuration, out Vector2 velocity)
+    {
+        Vector2 rbVelocity = (targetPosition - startPos) / jumpDuration - 0.5f * gravitySum * jumpDuration;
+        velocity = rbVelocity;
+    }
+    //迭代得到最合适的重力
+    private float IterationNearestGravity(float gravity , float jumpDuration ,float targetHeight)
+    {
+        int iterations = 0;
+        while (iterations < 100)
+        {
+            var currentHeight = CalculateMaxHeight(gravity, jumpDuration);
+
+            if (Mathf.Abs(currentHeight - targetHeight) < 0.2f)
             {
-                left = mid + 1;
+                // 如果当前高度已经接近目标高度，则返回当前重力值
+                return gravity;
+            }
+
+            // 根据当前高度与目标高度的比较，调整重力值
+            if (currentHeight > targetHeight)
+            {
+                gravity -= 0.01f;
             }
             else
             {
-                right = mid - 1;
+                gravity += 0.01f;
             }
+
+            iterations++;
         }
-        float bestHeight = sortedHeights[(left - right) /2];
-        return Height_GravityValues[bestHeight];
+        return gravity;
+
     }
-    private float CalculateMaxHeight(Vector2 gravitySum , out Vector2 velocity)
+    // 使用给定的重力大小计算抛物线的最大高度
+    private float CalculateMaxHeight(float gravity , float jumpDuration)
     {
-        // 使用给定的重力大小计算抛物线的最大高度
+        Vector2 gravitySum = gravity * Physics2D.gravity;
         Vector2 rbVelocity = (targetPosition - startPos) / jumpDuration - 0.5f * gravitySum * jumpDuration;
-        velocity = rbVelocity;
-        return (rbVelocity.y * rbVelocity.y) / (2 * -gravitySum.y) * 0.90f;//0.1的损耗
+        return (rbVelocity.y * rbVelocity.y) / (2 * -gravitySum.y);
     }
-    public override void Exit() 
-    {        
-        base.Exit();
-        JumpCounter +=1;
+    public override void SetAdditionalData(object value)
+    {
+        if (value != null && value is int)
+        {
+            JumpCounter = (int)value;
+        }
     }
 }

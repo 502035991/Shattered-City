@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,16 +103,76 @@ TextureImporter:
       name: sp_atk_8_0
       rect:
         serializedVersion: 2
-        x: 127
-        y: 0
-        width: 80
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 1
+        width: 78
+        height: 53
+      alignment: 9
+      pivot: {x: 0.28, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      outline:
+      - - {x: 39, y: 4.5}
+        - {x: 37, y: 10.5}
+        - {x: 22, y: 26.5}
+        - {x: -25, y: 26.5}
+        - {x: -39, y: 15.5}
+        - {x: -39, y: -26.5}
+        - {x: 39, y: -26.5}
+      - - {x: -7, y: -18.5}
+        - {x: -9, y: -16.5}
+        - {x: -9, y: -13.5}
+        - {x: -8, y: -14.5}
+        - {x: -6, y: -14.5}
+        - {x: -3, y: -11.5}
+        - {x: -3, y: -3.5}
+        - {x: -4, y: -2.5}
+        - {x: -4, y: 4.5}
+        - {x: -5, y: 5.5}
+        - {x: -6, y: 13.5}
+        - {x: -1, y: 13.5}
+        - {x: 0, y: 12.5}
+        - {x: 2, y: 12.5}
+        - {x: 6, y: 8.5}
+        - {x: 6, y: 6.5}
+        - {x: 7, y: 5.5}
+        - {x: 7, y: -0.5}
+        - {x: 6, y: -1.5}
+        - {x: 5, y: -7.5}
+        - {x: 2, y: -12.5}
+        - {x: -1, y: -15.5}
+        - {x: -6, y: -18.5}
+      physicsShape:
+      - - {x: 28.5, y: 15}
+        - {x: 12.5, y: 27}
+        - {x: -12.5, y: 27}
+        - {x: -28.5, y: -9}
+        - {x: -28.5, y: -26}
+        - {x: -26.5, y: -27}
+        - {x: 28.5, y: -27}
+      - - {x: 4.5, y: -19}
+        - {x: 2.5, y: -17}
+        - {x: 2.5, y: -14}
+        - {x: 3.5, y: -15}
+        - {x: 5.5, y: -15}
+        - {x: 8.5, y: -12}
+        - {x: 8.5, y: -4}
+        - {x: 7.5, y: -3}
+        - {x: 7.5, y: 4}
+        - {x: 6.5, y: 5}
+        - {x: 5.5, y: 13}
+        - {x: 10.5, y: 13}
+        - {x: 11.5, y: 12}
+        - {x: 13.5, y: 12}
+        - {x: 17.5, y: 8}
+        - {x: 17.5, y: 6}
+        - {x: 18.5, y: 5}
+        - {x: 18.5, y: -1}
+        - {x: 17.5, y: -2}
+        - {x: 16.5, y: -8}
+        - {x: 13.5, y: -13}
+        - {x: 10.5, y: -16}
+        - {x: 5.5, y: -19}
+      tessellationDetail: 0
       bones: []
       spriteID: a01af8940ca5524e0800000000000000
       internalID: -2007098277009317622
@@ -123,14 +183,15 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: de6aec3dce95b70459f87a3b82e929a1
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sp_atk_8_0: -2007098277009317622
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

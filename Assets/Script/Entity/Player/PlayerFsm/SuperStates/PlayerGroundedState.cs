@@ -50,7 +50,6 @@ public class PlayerGroundedState : PlayerState
             isAttack = false;
             stateMachine.ChangeState(player.primaryAttackState);
         }
-
         else if(isDash)
         {
             isDash = false;
@@ -71,9 +70,5 @@ public class PlayerGroundedState : PlayerState
     public override void DoCheck()
     {
         base.DoCheck();
-
-        if (player.isControlled)
-            stateMachine.ChangeState(player.hitState);
-
     }
 }

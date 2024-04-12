@@ -17,21 +17,82 @@ AnimationClip:
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
-  m_PPtrCurves: []
-  m_SampleRate: 60
+  m_PPtrCurves:
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 6909133511063604694, guid: a44c4668394134244b7122da4f4e36ce, type: 3}
+    - time: 0.083333336
+      value: {fileID: 1722729860194153176, guid: e8aa47c516dbd78479ff2786b08eab50, type: 3}
+    - time: 0.16666667
+      value: {fileID: 858470750432962513, guid: 176f8be427b8ec0468c829616955d45f, type: 3}
+    - time: 0.25
+      value: {fileID: -7462880309222308076, guid: 069ddc227500e1344ad4036e558ffbbd, type: 3}
+    - time: 0.33333334
+      value: {fileID: -1306821953766793531, guid: 39afee7eef2da88439f056f1e661dcf6, type: 3}
+    - time: 0.41666666
+      value: {fileID: 6403341504694242179, guid: d1e0ddefe752935429077a3d40ef632f, type: 3}
+    - time: 0.5
+      value: {fileID: 6322448989944034089, guid: 47c4ebd9090b2304283497d70d21332e, type: 3}
+    - time: 0.5833333
+      value: {fileID: -2007098277009317622, guid: fc254593033fdc74cb18303d7f375efe, type: 3}
+    - time: 0.6666667
+      value: {fileID: -4776491362072149756, guid: 66aa6383295417c4ea00bc557511b479, type: 3}
+    - time: 0.75
+      value: {fileID: 6538344132787063215, guid: 3c2f642027ecd634181bb4563f4562cb, type: 3}
+    - time: 0.8333333
+      value: {fileID: 2149889566072624066, guid: a0e3078484acf3d468c0f4384b2883cd, type: 3}
+    - time: 0.9166667
+      value: {fileID: 8708975208597104252, guid: 8f97c2f9ec550794bb2ec5c6da852078, type: 3}
+    - time: 1
+      value: {fileID: -966446644680641496, guid: 484c959a08169ab41a8b9e3d619dee91, type: 3}
+    - time: 1.0833334
+      value: {fileID: 4929811027680253035, guid: 79afa977716453b47b57567d4230dc2b, type: 3}
+    - time: 1.1666666
+      value: {fileID: 147145537708913517, guid: a00e9fe507a41ba419b0883ec3922bd8, type: 3}
+    attribute: m_Sprite
+    path: 
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    pptrCurveMapping:
+    - {fileID: 6909133511063604694, guid: a44c4668394134244b7122da4f4e36ce, type: 3}
+    - {fileID: 1722729860194153176, guid: e8aa47c516dbd78479ff2786b08eab50, type: 3}
+    - {fileID: 858470750432962513, guid: 176f8be427b8ec0468c829616955d45f, type: 3}
+    - {fileID: -7462880309222308076, guid: 069ddc227500e1344ad4036e558ffbbd, type: 3}
+    - {fileID: -1306821953766793531, guid: 39afee7eef2da88439f056f1e661dcf6, type: 3}
+    - {fileID: 6403341504694242179, guid: d1e0ddefe752935429077a3d40ef632f, type: 3}
+    - {fileID: 6322448989944034089, guid: 47c4ebd9090b2304283497d70d21332e, type: 3}
+    - {fileID: -2007098277009317622, guid: fc254593033fdc74cb18303d7f375efe, type: 3}
+    - {fileID: -4776491362072149756, guid: 66aa6383295417c4ea00bc557511b479, type: 3}
+    - {fileID: 6538344132787063215, guid: 3c2f642027ecd634181bb4563f4562cb, type: 3}
+    - {fileID: 2149889566072624066, guid: a0e3078484acf3d468c0f4384b2883cd, type: 3}
+    - {fileID: 8708975208597104252, guid: 8f97c2f9ec550794bb2ec5c6da852078, type: 3}
+    - {fileID: -966446644680641496, guid: 484c959a08169ab41a8b9e3d619dee91, type: 3}
+    - {fileID: 4929811027680253035, guid: 79afa977716453b47b57567d4230dc2b, type: 3}
+    - {fileID: 147145537708913517, guid: a00e9fe507a41ba419b0883ec3922bd8, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 1.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -50,4 +111,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5833333
+    functionName: EnemySkillCreatObj
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1666666
+    functionName: EnemyAnimationEndCallBack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

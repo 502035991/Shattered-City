@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crystal_ChangePhaseState : Crystal_AbilityState
+public class Crystal_ChangePhaseState : Crystal_GroundedState
 {
-    public Crystal_ChangePhaseState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName, Action<CrystalCD> ac) : base(enemyStateMachine, enemyData, enemy, animName, ac)
-    {
-    }
+
     private float duration = 5f;
     private float startTime;
+
+    public Crystal_ChangePhaseState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
+    {
+    }
+
     public override void Enter()
     {
         base.Enter();

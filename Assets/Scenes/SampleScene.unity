@@ -281,12 +281,13 @@ Transform:
   m_GameObject: {fileID: 297383230}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.22, y: -0.22, z: -0.096886694}
+  m_LocalPosition: {x: -8.427, y: -0.22, z: -0.096886694}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1996201737}
   - {fileID: 640769205}
+  - {fileID: 2131465955676329532}
   - {fileID: 1671213635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -305,50 +306,14 @@ MonoBehaviour:
   groundCheck: {fileID: 828600252}
   wallCheck: {fileID: 929813943}
   attackCheck: {fileID: 1050647751}
-  baseAttackSize: {x: 5.55, y: 4, z: 0}
+  baseAttackSize: {x: 2.8, y: 4, z: 0}
   entityData: {fileID: 11400000, guid: 98d32fa61880edf42b0caa87e9d7a8fb, type: 2}
   imgDirection: 1
-  isAttacking: 0
   playerCheck: {fileID: 101761037}
   canControl: 0
-  coll: {fileID: 0}
-  isControlled: 0
   skillRockPos: {fileID: 640769205}
-  jumpCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -2
-      outSlope: -2
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  jumpDuration: 1.4
-  jumpMaxHeight: 15
+  skillLandPos: {fileID: 2131465955676329532}
+  baseAttackSize_2: {x: 1.5, y: 4, z: 0}
 --- !u!50 &297383233
 Rigidbody2D:
   serializedVersion: 4
@@ -392,7 +357,7 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   maxHealth:
-    baseValue: 100
+    baseValue: 1000
     modifiers: 
   currentHealth: 0
 --- !u!70 &297383236
@@ -625,7 +590,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4814682, y: 4.488744, z: -10.28798}
+  m_LocalPosition: {x: 17.008532, y: 4.488744, z: -10.28798}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1021,7 +986,7 @@ Transform:
   m_GameObject: {fileID: 849677989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.36, y: -0.18, z: 0}
+  m_LocalPosition: {x: 16.13, y: -0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1114,7 +1079,6 @@ MonoBehaviour:
   baseAttackSize: {x: 2.5, y: 1.5, z: 1}
   entityData: {fileID: 11400000, guid: 860c7fe12cd394b4b9ff906d1181ded8, type: 2}
   imgDirection: 1
-  isAttacking: 0
   airAttackChenck: {fileID: 1301820226}
 --- !u!114 &849677994
 MonoBehaviour:
@@ -1617,7 +1581,7 @@ Transform:
   m_GameObject: {fileID: 1050647750}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.14, y: 1, z: 0}
+  m_LocalPosition: {x: 1.68, y: 0.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1688,7 +1652,7 @@ Transform:
   m_GameObject: {fileID: 1054523662}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4814682, y: 4.488744, z: -10.28798}
+  m_LocalPosition: {x: 17.008532, y: 4.488744, z: -10.28798}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4670,7 +4634,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.5, y: 2.5833333}
+  m_Size: {x: 6.6666665, y: 4.5833335}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4887,6 +4851,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &2131465955676329532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251016966839177591}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.31, y: -1.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 297383231}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7251016966839177591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2131465955676329532}
+  m_Layer: 0
+  m_Name: SkillLandPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

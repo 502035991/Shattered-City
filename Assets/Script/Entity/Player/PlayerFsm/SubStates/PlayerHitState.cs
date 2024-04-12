@@ -10,7 +10,7 @@ public class PlayerHitState : PlayerAbilityState
     public override void DoCheck()
     {
         base.DoCheck();
-        if (!player.isControlled)
+        if (!player.GetControlState())
         {
             player.stateMachine.ChangeState(player.idleState);
         }

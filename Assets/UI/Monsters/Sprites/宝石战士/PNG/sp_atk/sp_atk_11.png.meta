@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -78,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -107,11 +107,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 130
-        y: 0
+        y: 1
         width: 35
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 52
+      alignment: 9
+      pivot: {x: 0.57, y: 0.415}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,11 +128,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 168
-        y: 0
-        width: 116
-        height: 76
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 1
+        width: 120
+        height: 89
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,14 +147,16 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 944ab5c36ca5b404fb0e206c949a5e8d
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sp_atk_11_0: 2149889566072624066
+      sp_atk_11_1: -5460755944616478769
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

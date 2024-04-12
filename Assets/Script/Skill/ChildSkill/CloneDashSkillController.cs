@@ -18,7 +18,7 @@ public class CloneDashSkillController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var target = collision.gameObject.GetComponent<Enemy>();
-        if (target!=null && target.CanBeHurt)
+        if (target!=null)
         {
             anim.SetBool("CloneAttack", true);
             target.KnockBack(Vector2.zero, 0, 0.3f).Forget();

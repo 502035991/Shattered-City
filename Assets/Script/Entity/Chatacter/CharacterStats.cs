@@ -17,15 +17,19 @@ public abstract class CharacterStats : MonoBehaviour
 
     public Action onHealthChanged;
 
+    private Entity entity;
     [SerializeField] private int currentHealth;
 
     protected virtual void Start()
     {
+        entity = GetComponentInParent<Entity>();
         currentHealth = GetMaxHealthValue();
     }
     public virtual void DoDamage(CharacterStats _targetStats, int damage2)
     {
         //int totalDamage = damage.GetValue() + strength.GetValue();
+/*        if (!entity.CanBeHurt)
+            return;*/
         int totalDamage = damage.GetValue() + damage2;
         _targetStats.TakeDamage(totalDamage);
     }

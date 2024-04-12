@@ -1,13 +1,14 @@
 
 using UnityEngine;
 
-public class Crystal_PhaseOneBattleState : Crystal_GroundedState
+public class Crystal_PhaseOneBattleState : EnemyState
 {
-
+    private Boss_Crystal enemy;
     private bool checkWait =false;
 
     public Crystal_PhaseOneBattleState(EnemyStateMachine enemyStateMachine, EnemyData enemyData, Boss_Crystal enemy, string animName) : base(enemyStateMachine, enemyData, enemy, animName)
     {
+        this.enemy = enemy;
     }
 
     private bool canUseSkill = false;
@@ -26,17 +27,12 @@ public class Crystal_PhaseOneBattleState : Crystal_GroundedState
     {
         float dis = Vector2.Distance(enemy.transform.position, player.transform.position);
         
-        if(!canUseSkill || !enemy.CheckIsOnCooldown(CrystalCD.BaseAttack2))
+        if(canUseSkill)
         {
-            if(dis <enemyData.Skill[0].distance && !enemy.CheckIsOnCooldown(CrystalCD.BaseAttack1))
+            if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Skill_1) && dis < enemyData.Skill[CrystalAttackMenu.Skill_1].distance)
             {
-                enemyStateMachine.ChangeState(enemy.attackState, 1);
+                enemyStateMachine.ChangeState(enemy.skillState1);
                 canUseSkill = false;
-            }
-            else if(enemy.CheckIsOnCooldown(CrystalCD.BaseAttack1))
-            {
-                enemyStateMachine.ChangeState(enemy.attackState, 2);
-                canUseSkill = true;
             }
             else
             {
@@ -46,10 +42,15 @@ public class Crystal_PhaseOneBattleState : Crystal_GroundedState
         }
         else
         {
-            if (!enemy.CheckIsOnCooldown(CrystalCD.Skill_1) && dis < enemyData.Skill[2].distance)
+            if (dis < enemyData.Skill[CrystalAttackMenu.BaseAttack2].distance && !enemy.CheckIsOnCooldown(CrystalAttackMenu.BaseAttack1))
             {
-                enemyStateMachine.ChangeState(enemy.skillState1);
+                enemyStateMachine.ChangeState(enemy.attackState, CrystalAttackMenu.BaseAttack1);//Attack_1
                 canUseSkill = false;
+            }
+            else if (enemy.CheckIsOnCooldown(CrystalAttackMenu.BaseAttack1))
+            {
+                enemyStateMachine.ChangeState(enemy.attackState, CrystalAttackMenu.BaseAttack2);//Attack_2
+                canUseSkill = true;
             }
             else
             {
@@ -62,7 +63,7 @@ public class Crystal_PhaseOneBattleState : Crystal_GroundedState
     /// <summary>
     /// ÆúÓÃ
     /// </summary>
-    private void CheckCanAttack()
+/*    private void CheckCanAttack()
     {
         float dis = Vector2.Distance(enemy.transform.position, player.transform.position);
         if (!enemy.CheckIsOnCooldown(CrystalCD.BaseAttack2))//ÅÐ¶ÏAttack2 CD
@@ -92,5 +93,5 @@ public class Crystal_PhaseOneBattleState : Crystal_GroundedState
                 enemy.SetVelocityX(enemy.facingDirection * enemyData.movementVelocity);
             }
         }
-    }
+    }*/
 }

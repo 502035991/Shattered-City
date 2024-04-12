@@ -33,7 +33,8 @@ public class PlayerState
     }
     public virtual void DoCheck()
     {
-
+        if (player.GetControlState())
+            stateMachine.ChangeState(player.hitState);
     }
     public virtual void PhysicUpdate()
     {

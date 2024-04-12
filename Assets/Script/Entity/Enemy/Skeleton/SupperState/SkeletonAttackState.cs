@@ -42,14 +42,14 @@ public class SkeletonAttackState : EnemyState
             foreach (var item in coll)
             {
                 Player target = item.GetComponent<Player>();
-                if (target != null && target.CanBeHurt)
+                if (target != null)
                 {
 /*                    target.TakeDamageEffect();
                     target.stats.TakeDamage();*/
                     if (IsCritical)
                     {
                         enemy.stats.DoDamage(target.stats, 5);
-                        target.KnockBack(new Vector2(7 * -enemy.facingDirection, 10), 10 ,0.5f).Forget();//÷¼÷Ã±©»÷
+                        //target.KnockBack(new Vector2(7 * -enemy.facingDirection, 10), 10 ,0.5f).Forget();//÷¼÷Ã±©»÷
                     }
                     else
                     {

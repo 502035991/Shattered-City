@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CharacterStats" Collapsed="true">
+    <Position X="1.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAIACAAgAQAAAACAAAAAAAEGAAAAAAAiAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Chatacter\CharacterStats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyStats" Collapsed="true">
+    <Position X="0.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAI=</HashCode>
+      <FileName>Assets\Script\Entity\Chatacter\EnemyStats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerStats" Collapsed="true">
+    <Position X="2.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAABAAAACAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Chatacter\PlayerStats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stat" Collapsed="true">
+    <Position X="64.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAIAAAAAAAAAAABAAAAAAAAAAAAAAAAEAAAAQ=</HashCode>
+      <FileName>Assets\Script\Entity\Chatacter\Stat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseData" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAIABAAAAAAAAAAAACEAQA=</HashCode>
+      <FileName>Assets\Script\Entity\Data\BaseData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyData" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAgAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Data\EnemyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerData" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAgAAAAAAAAAAEACAAAAAAAAAIA=</HashCode>
+      <FileName>Assets\Script\Entity\Data\PlayerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_AttackState" Collapsed="true">
+    <Position X="18" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAACAAAAAAAAAEAAMAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SubState\Crystal_AttackState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_ChangePhaseState" Collapsed="true">
+    <Position X="20.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAgAAAAAAAEIAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SubState\Crystal_ChangePhaseState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_DeadState" Collapsed="true">
+    <Position X="22.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SubState\Crystal_DeadState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_IdleSate" Collapsed="true">
+    <Position X="33.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAEIAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SubState\Crystal_IdleSate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_JumpState" Collapsed="true">
+    <Position X="24.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEgAAAAAgAAAAAAAABAAAAAAEAAAAIiAABAABAAI=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SubState\Crystal_JumpState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_LandState" Collapsed="true">
+    <Position X="31" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAEAABAAAAAAAAAAAIAAAAEAAAAEAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SubState\Crystal_LandState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_PhaseOneBattleState">
+    <Position X="28.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAIAAEAAAAEACAAAI=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SubState\Crystal_PhaseOneBattleState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_PhaseTwoBattleState">
+    <Position X="26.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAACAAAI=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SubState\Crystal_PhaseTwoBattleState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_SkillState1" Collapsed="true">
+    <Position X="15.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SubState\Crystal_SkillState1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_AbilityState" Collapsed="true">
+    <Position X="20.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAABEIAAIAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SupperState\Crystal_AbilityState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_GroundedState" Collapsed="true">
+    <Position X="32" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SupperState\Crystal_GroundedState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crystal_InAirState" Collapsed="true">
+    <Position X="34.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAIAAIAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Boss_Crystal\SupperState\Crystal_InAirState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyAnimationTrigger" Collapsed="true">
+    <Position X="56.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABgACAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAI=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\EnemyAnimationTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boss_Crystal" Collapsed="true">
+    <Position X="5.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQEAAAcAiAAAAIgAAIBAmCAAAAAQEACQAEAAAAAQEw=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\EnemyEntity\Boss_Crystal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="3" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAACAAggCAAAAAQIIAICBgABAAAAAAIAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\EnemyEntity\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy_Skeleton" Collapsed="true">
+    <Position X="0.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEACAAACAACAIgAAAAAiAAAAAAAAgAAAAAAACAAEQ=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\EnemyEntity\Enemy_Skeleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy_Slime" Collapsed="true">
+    <Position X="3" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAAAAIgAAAAAiAAAAAAAAgAIAAAAACAAEQ=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\EnemyEntity\Enemy_Slime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SkeletonDeadState" Collapsed="true">
+    <Position X="25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAEAAAAAAAAI=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\Skeleton\SubState\SkeletonDeadState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyState" Collapsed="true">
+    <Position X="27.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAAAAAAAAEEAAAAAAAAAADAEIAMBIEAAAAEAABA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\StateMachine\EnemyState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyStateMachine" Collapsed="true">
+    <Position X="58.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABQAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\StateMachine\EnemyStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entity" Collapsed="true">
+    <Position X="4" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>4AQAAAAUAjCAAAAsBAABIgEAAgAwAAAAQUABhEAgAFA=</HashCode>
+      <FileName>Assets\Script\Entity\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityFX" Collapsed="true">
+    <Position X="63" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAQAAAAAAAAAggACAAgAAIAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\EntityFX.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="7.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAjEQIiCBBAAgApKBIgCABABABAgBIEGAAAAAAEw=</HashCode>
+      <FileName>Assets\Script\Entity\Player\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerAnimationTrigger" Collapsed="true">
+    <Position X="57" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAACAAAAAAAAAAAAAAAAAAAAABAAAAQAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Player\PlayerAnimationTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerStateMachine" Collapsed="true">
+    <Position X="63" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABQAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Player\PlayerFsm\StateMachine\PlayerStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerInputHandler" Collapsed="true">
+    <Position X="61.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgABACIAaAAAACBABSABIBIKAAIJAAGAsAAAAAA=</HashCode>
+      <FileName>Assets\Script\Input\PlayerInputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="67.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Script\Manager\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerManager" Collapsed="true">
+    <Position X="61.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAABAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Script\Manager\PlayerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SkillManager" Collapsed="true">
+    <Position X="67.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAABQAAAAAAAAIEAAAEA=</HashCode>
+      <FileName>Assets\Script\Manager\SkillManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CloneDashSkill" Collapsed="true">
+    <Position X="15.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAABAAAAAAEAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Script\Skill\ChildSkill\CloneDashSkill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CloneDashSkillController" Collapsed="true">
+    <Position X="67.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAFAAAAAAAAAAAAAAAAAAEAAggAAAQAAAAAAAEI=</HashCode>
+      <FileName>Assets\Script\Skill\ChildSkill\CloneDashSkillController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DashSkill" Collapsed="true">
+    <Position X="10.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAEACAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Script\Skill\ChildSkill\DashSkill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeStopSkill" Collapsed="true">
+    <Position X="13" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQIAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Skill\ChildSkill\TimeStopSkill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrystalSkillLandController" Collapsed="true">
+    <Position X="55" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAIAAGAAAABAAAAgAAAAAEAAAAABAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Skill\Enemy\Crystal\CrystalSkillLandController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrystalSkillRockController" Collapsed="true">
+    <Position X="56.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAgmAAAAAEAAAgAAAAAEAAAQABAAACAAAACEA=</HashCode>
+      <FileName>Assets\Script\Skill\Enemy\Crystal\CrystalSkillRockController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Skill" Collapsed="true">
+    <Position X="13" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAABAAAAAAAAAAEAAAACAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Assets\Script\Skill\Skill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HealthBar_UI" Collapsed="true">
+    <Position X="55" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEABAQACAAAAAAAAAAAAAAAAAAAAAIAAAEAAAAAQA=</HashCode>
+      <FileName>Assets\Script\UI\HealthBar_UI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatController" Collapsed="true">
+    <Position X="65.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAICEAAAAAACAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnvMapAnimator" Collapsed="true">
+    <Position X="64.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DG.Tweening.DOTweenCYInstruction" Collapsed="true">
+    <Position X="58.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Plugins\DOTween\Modules\DOTweenModuleUnityVersion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark01" Collapsed="true">
+    <Position X="55" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAIAACAAAAAAAAQAAAAIAAQAAAAAgAABAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark01_UGUI" Collapsed="true">
+    <Position X="56.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAAAACAAAAAAAAQAAAAKAAQAAAAAgAABAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark02" Collapsed="true">
+    <Position X="58.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark03" Collapsed="true">
+    <Position X="60.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACCAAAAAAAAAAAAAAAAAQAAAAAAAAAAAEEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark04" Collapsed="true">
+    <Position X="62" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAIACAAAAAAAAAAAAAAAAAAAAAAAQAAAAABAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.CameraController" Collapsed="true">
+    <Position X="63.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAEAAEADAEBEAgAIQAIEABAAAFgYQQACAAAAAAIEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CrystalCD">
+    <Position X="56.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAACQAAAAAAAAAAAQAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\EnemyEntity\Boss_Crystal.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Phase">
+    <Position X="60.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAgAAAAAAIA=</HashCode>
+      <FileName>Assets\Script\Entity\Enemy\EnemyEntity\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Direction">
+    <Position X="58.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Script\Entity\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="bState">
+    <Position X="55" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\Player\PlayerFsm\StateMachine\PlayerState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

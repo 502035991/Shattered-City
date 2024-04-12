@@ -38,10 +38,10 @@ public class SlimeAttackState : SlimeBaseState
             foreach (var item in coll)
             {
                 Player target = item.GetComponent<Player>();
-                if (target != null && target.CanBeHurt)
+                if (target != null)
                 {
                     enemy.stats.DoDamage(target.stats, 2);
-                    target.KnockBack(Vector2.zero, 0, 0.5f).Forget();
+                    //target.KnockBack(Vector2.zero, 0, 0.5f).Forget();
                     return;
                 }
             }

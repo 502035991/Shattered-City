@@ -28,6 +28,5 @@ public class Crystal_InAirState : EnemyState
         {
             enemy.anim.SetFloat("yVelocity", enemy.currentVelocity.y);
         }
-
     }
 }

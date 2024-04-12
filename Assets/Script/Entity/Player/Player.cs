@@ -1,8 +1,8 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
+using TMPro;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Player : Entity
 {
@@ -10,7 +10,6 @@ public class Player : Entity
     public PlayerInputHandler inputHandler { get; private set; }
     public PlayerStateMachine stateMachine {  get; private set; }
     public SkillManager skill {  get; private set; }
-    public bool isControlled {  get; private set; }
     private float startControlTime;
     
     #region States
@@ -35,7 +34,6 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
-        isEnemy = false;
         stateMachine = new PlayerStateMachine();
         playerData = (PlayerData)entityData;
 
@@ -75,41 +73,55 @@ public class Player : Entity
         stateMachine.currentState.PhysicUpdate();
     }
     #endregion
-
     public void AnimationTrigger()
     {
         stateMachine.currentState.AnimationFinishTrigger();
     }
-    public async UniTask KnockBack(Vector2 direction, float magnitude, float duraton)
+    //被击退
+    public async void KnockBack(float knockbackDis , int enemyDir , float duration , bool isForcedAttack =false)
     {
-        if (!isControlled)
-        {
-            SetVelocity(direction.normalized * magnitude);
+        if(isForcedAttack)
+            isControlled = false;
+
+        if(!isControlled)
+        {          
+            SetFlip(-enemyDir);
+            var velocity = CalculateVelocity(knockbackDis, enemyDir, duration);
+            //RB.AddForce(velocity, ForceMode2D.Impulse);
+            SetVelocity(velocity);
 
             isControlled = true;
-            await UniTask.Delay(TimeSpan.FromSeconds(duraton)); // 例如无敌持续时间        
-            isControlled = false;            
-        }
-    }
-    public async void KnockBackUp(int direction ,float duration , float power)
-    {
-        if (!isControlled)
-        {
-            startControlTime = Time.time;
-            SetFlip(-direction);
-            isControlled = true;
-            RB.AddForce(new Vector2(5 *direction , 3) * power, ForceMode2D.Impulse);
             await UniTask.Delay(TimeSpan.FromSeconds(duration));
-            isControlled = false;
+            while(true)
+            {
+                if (CheckIfTouchingGround())
+                {
+                    isControlled = false;
+                    SetVelocityX(0);
+                    return;
+                }
+                await UniTask.Yield();
+            }
         }
     }
-    private Sequence knockBackUpTween;
+    //计算初始速度
+    private Vector2 CalculateVelocity(float distance ,int enemyDir, float duration)
+    {
+        var gravitySum = Physics2D.gravity * RB.gravityScale;
+        var targetPos = new Vector2(transform.position.x + enemyDir * distance, transform.position.y);
+        Vector2 startPos = transform.transform.position;
+
+        Vector2 knockbackVelocity = (targetPos - startPos) / duration - 0.5f * gravitySum * duration;
+        //knockbackVelocity.x *= enemyDir;
+        return knockbackVelocity;
+    }
+/*    private Sequence knockBackUpTween;
     private Tweener knockBackMove;
     public void KnockBackUp(int direction, float distance, float power, float durection)
     {
-        if (!isControlled)
+        if (CanBeHurt && !isControlled)
         {
-            isControlled = true;
+            SetControlStats(true);
             SetFlip(-direction);
             var targetPos = new Vector2(transform.position.x + distance * direction, transform.position.y);
             knockBackUpTween = transform.DOJump(targetPos, power, 1, durection)
@@ -118,17 +130,17 @@ public class Player : Entity
                     if (Physics2D.Raycast(transform.position, Vector3.right * -facingDirection, 1f, 1 << LayerMask.NameToLayer("Wall")))
                     {
                         knockBackUpTween.Kill();
-                        isControlled = false;
+                        SetControlStats(false);
                     }
                 })
-                .OnComplete(() => isControlled = false);
+                .OnComplete(() => SetControlStats(false));
         }
     }
     public void KnockBackHor(int direction, float distance, float durection)
     {
-        if (!isControlled)
+        if (CanBeHurt && !isControlled)
         {
-            isControlled = true;
+            SetControlStats(true);
             SetFlip(-direction);
             var targetPos = new Vector2(transform.position.x + distance * direction, transform.position.y);
             knockBackMove = transform.DOMove(targetPos,durection)
@@ -137,31 +149,26 @@ public class Player : Entity
                     if (Physics2D.Raycast(transform.position, Vector3.right * -facingDirection, 0.5f, 1 << LayerMask.NameToLayer("Wall")))
                     {
                         knockBackMove.Kill();
-                        isControlled = false;
+                        SetControlStats(false);
                     }
                 })
-                .OnComplete(() => isControlled = false);
+                .OnComplete(() => SetControlStats(false));
         }
-    }
-    /// <summary>
-    /// 僵直，控制，吸附
-    /// </summary>
-    public void ControllPlyer(Vector2 pos ,int direction)
+    }*/
+
+    public void SetControl()
     {
-        if (!isControlled)
-        {
-            isControlled = true;
-            SetFlip(-direction);
-            RB.gravityScale = 0;
-        }
-        transform.position = new Vector2(pos.x, transform.position.y);
-
+        isControlled = true;
     }
-
     public void CancelControl()
     {
-        isControlled =false;
-        RB.gravityScale = 3.5f;
+        if (!isControlled)
+            return;
+        isControlled=false;
+    }
+    public bool GetControlState()
+    {
+        return isControlled;
     }
     [SerializeField]
     private Transform airAttackChenck;
@@ -174,11 +181,9 @@ public class Player : Entity
     {
         stateMachine.ChangeState(deadState);
     }
-
-
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);
+        Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckDistance);
         Gizmos.DrawWireSphere(attackCheck.position, entityData.attackDistance);
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + entityData.wallCheckDistance, wallCheck.position.y));
 
