@@ -1,4 +1,7 @@
 using Cysharp.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerAttackState : PlayerAbilityState
@@ -8,18 +11,33 @@ public class PlayerAttackState : PlayerAbilityState
     }
 
     private int normalAttackConter = 0;
+    private float lastAttackTime;
+    private float intervaltime = 1.3f;
+
+    private CancellationTokenSource cancellationTokenSource;
 
     public override void Enter()
     {
         base.Enter();
-        if (normalAttackConter > 2)
+        if (normalAttackConter > 2 || Time.time > lastAttackTime + intervaltime)
             normalAttackConter = 0;
 
         player.SetVelocityX(playerData.attacckMovement[normalAttackConter].x * player.facingDirection);
 
         player.anim.SetInteger("NormalAttackConter", normalAttackConter);
     }
-
+    public override void Exit()
+    {
+        base.Exit();
+        lastAttackTime = Time.time;
+        // 取消等待动画完成的操作
+        if (cancellationTokenSource != null)
+        {
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource.Dispose();
+            cancellationTokenSource = null;
+        }
+    }
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
@@ -28,10 +46,10 @@ public class PlayerAttackState : PlayerAbilityState
     public override void DoCheck()
     {
         base.DoCheck();
-        Attack();
+        AttackTarget();
     }
-    private void Attack()
-    {
+    private void AttackTarget()
+    {        
         if (player.isAttacking)
         {
             player.UseAttackState();
@@ -67,39 +85,44 @@ public class PlayerAttackState : PlayerAbilityState
     }
     public override async void AnimationFinishTrigger()
     {
-        float startTime = Time.time;
-        bool isAttacking = false;
-        await WaitForAnimationCompletion();
         player.inputHandler.UseAttackInput();
 
-        normalAttackConter++;
-        while (Time.time - startTime < 0.45f)
-        {
-            if (player.inputHandler.isAttack)
-            {
-                //标记是否进行了攻击
-                isAttacking = true;
-                break;
-            }
-            await UniTask.Yield();
-        }
-        if (!isAttacking)
-            normalAttackConter = 0;
-    }
-    private async UniTask WaitForAnimationCompletion()
-    {
-        // 检测动画是否播放完毕
-        while (player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-        {
-            await UniTask.Yield();
-        }
-        isAbilityDone = true;
-    }
+        cancellationTokenSource = new CancellationTokenSource();
 
-    public override void Exit()
+        try
+        {
+            await WaitForAnimationCompletion(cancellationTokenSource.Token);
+        }
+        catch (OperationCanceledException)
+        {
+
+        }
+    }
+    private async UniTask WaitForAnimationCompletion(CancellationToken cancellationToken)
     {
-        base.Exit();
-        if (player.inputHandler.isAttack)
-            player.inputHandler.UseAttackInput();
+        bool isAttackInput =false;
+        // 检测动画是否播放完毕，同时监听取消操作
+        while (!cancellationToken.IsCancellationRequested && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            //如果预输入阶段按下了攻击键 则记录攻击状态
+            if(player.inputHandler.isAttack && !isAttackInput)
+                isAttackInput = true;
+
+
+            await UniTask.Yield();
+        }
+        // 如果取消操作被触发，则直接抛出 OperationCanceledException 异常
+        cancellationToken.ThrowIfCancellationRequested();
+
+
+        normalAttackConter++;
+        if (isAttackInput)
+        {
+            stateMachine.ChangeState(player.primaryAttackState);
+        }
+        else
+        {
+            isAbilityDone = true;
+        }
     }
 }

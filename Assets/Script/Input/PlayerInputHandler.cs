@@ -36,7 +36,6 @@ public class PlayerInputHandler : MonoBehaviour
         }
         else if(context.canceled)
         {
-
             jumpInput = false;
         }
     }
@@ -101,7 +100,6 @@ public class PlayerInputHandler : MonoBehaviour
         {
             isTimeStopEnable = false;
         }
-
     }
 
     public void ClearMovementInput() => movementInput = Vector2.zero;

@@ -34,6 +34,10 @@ public class Crystal_PhaseOneBattleState : EnemyState
                 enemyStateMachine.ChangeState(enemy.skillState1);
                 canUseSkill = false;
             }
+            else if(!enemy.CheckIsOnCooldown(CrystalAttackMenu.BaseAttack2))
+            {
+                canUseSkill = false;
+            }
             else
             {
                 enemy.SetFlip(player.transform.position.x < enemy.transform.position.x ? -1 : 1);
@@ -42,7 +46,7 @@ public class Crystal_PhaseOneBattleState : EnemyState
         }
         else
         {
-            if (dis < enemyData.Skill[CrystalAttackMenu.BaseAttack2].distance && !enemy.CheckIsOnCooldown(CrystalAttackMenu.BaseAttack1))
+            if (dis < enemyData.Skill[CrystalAttackMenu.BaseAttack1].distance && !enemy.CheckIsOnCooldown(CrystalAttackMenu.BaseAttack1))
             {
                 enemyStateMachine.ChangeState(enemy.attackState, CrystalAttackMenu.BaseAttack1);//Attack_1
                 canUseSkill = false;
