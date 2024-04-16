@@ -6,7 +6,7 @@ public class DashSkill : Skill
 {
     private int dashCounter;
     private bool isFirstDashed;
-    private bool dashEnd;
+    private bool CanDash;
     [SerializeField] private float interval;//间隔时间
     public override bool CanUseSkill()
     {
@@ -16,15 +16,15 @@ public class DashSkill : Skill
         if (cooldownTimer <= 0)
         {
             dashCounter += 1;
-            dashEnd = false;
+            CanDash = false;
             cooldownTimer = colldown;
             UseSkill();
             return true;           
         }
-        else if(dashEnd && dashCounter == 1)
+        else if(CanDash && dashCounter == 1)
         {
             dashCounter += 1;
-            dashEnd = false;
+            CanDash = false;
             cooldownTimer = colldown;
             return true;
         }
@@ -36,11 +36,14 @@ public class DashSkill : Skill
     public override async void UseSkill()
     {
         await UniTask.WaitUntil(() => !PlayerManager.instance.player.inputHandler.isDash);
-        dashEnd =true;
+        CanDash =true;
         await UniTask.Delay(TimeSpan.FromSeconds(interval));
-        // 如果此时没有再次按下 Dash 键,重置计数器
-        if (dashCounter != 0)
-            dashCounter = 0;                  
+        if(CanDash)
+        {
+            CanDash = false;
+            dashCounter = 0;
+        }
+               
     }
 
     protected override void Update()
