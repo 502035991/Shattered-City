@@ -45,10 +45,6 @@ public class PlayerInputHandler : MonoBehaviour
         { 
             isDash = true;
         }
-         else if(context.canceled)
-        {
-            isDash = false;
-        }
     }
     public void OnNormalAttack(InputAction.CallbackContext context)
     {

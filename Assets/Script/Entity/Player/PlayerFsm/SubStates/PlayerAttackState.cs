@@ -12,7 +12,7 @@ public class PlayerAttackState : PlayerAbilityState
 
     private int normalAttackConter = 0;
     private float lastAttackTime;
-    private float intervaltime = 1.3f;
+    private float intervaltime = 0.8f;
 
     private CancellationTokenSource cancellationTokenSource;
 
@@ -81,6 +81,7 @@ public class PlayerAttackState : PlayerAbilityState
                     }
                 }
             }
+            normalAttackConter++;
         }
     }
     public override async void AnimationFinishTrigger()
@@ -114,8 +115,6 @@ public class PlayerAttackState : PlayerAbilityState
         // 如果取消操作被触发，则直接抛出 OperationCanceledException 异常
         cancellationToken.ThrowIfCancellationRequested();
 
-
-        normalAttackConter++;
         if (isAttackInput)
         {
             stateMachine.ChangeState(player.primaryAttackState);

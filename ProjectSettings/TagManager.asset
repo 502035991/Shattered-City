@@ -47,3 +47,9 @@ TagManager:
   - name: Player
     uniqueID: 406225639
     locked: 0
+  - name: Summons
+    uniqueID: 3243748045
+    locked: 0
+  - name: Building
+    uniqueID: 119121219
+    locked: 0

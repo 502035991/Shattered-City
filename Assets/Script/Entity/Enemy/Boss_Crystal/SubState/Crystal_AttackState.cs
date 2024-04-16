@@ -60,6 +60,9 @@ public class Crystal_AttackState : Crystal_AbilityState
     public override void DoCheck()
     {
         base.DoCheck();
+        if(Vector2.Distance(player.transform.position,enemy.transform.position) <1f)
+            enemy.SetVelocityX(0);
+
         if (enemy.isAttacking)
         {
             if (normalAttackConter == 1)
@@ -68,7 +71,6 @@ public class Crystal_AttackState : Crystal_AbilityState
                 if (coll != null)
                 {
                     enemy.UseAttackState();
-                    enemy.SetVelocityX(0);
 
                     Player target = coll.GetComponent<Player>();
                     target.stats.DoDamage(player.stats, enemyData.Skill[CrystalAttackMenu.BaseAttack1].Damage);
@@ -82,7 +84,6 @@ public class Crystal_AttackState : Crystal_AbilityState
                 if (coll != null)
                 {
                     enemy.UseAttackState();
-                    enemy.SetVelocityX(0);
 
                     Player target = coll.GetComponent<Player>();
                     target.stats.DoDamage(player.stats, enemyData.Skill[CrystalAttackMenu.BaseAttack2].Damage);

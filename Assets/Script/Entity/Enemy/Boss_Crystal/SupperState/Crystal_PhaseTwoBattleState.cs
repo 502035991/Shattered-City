@@ -20,30 +20,29 @@ public class Crystal_PhaseTwoBattleState : EnemyState
     {
         var currentSkill = ReleaseRandomSkill();
 
-        if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Jump_1))
-            enemyStateMachine.ChangeState(enemy.jumpState, 1);
-        else
-            enemyStateMachine.ChangeState(enemy.jumpState, 2);
-
-        //switch (currentSkill)
-        //{
-        //    case CrystalAttackMenu.Jump_1:
-        //        if(!enemy.CheckIsOnCooldown(CrystalAttackMenu.Jump_1))
-        //            enemyStateMachine.ChangeState(enemy.jumpState,1);
-        //        return;
-        //    case CrystalAttackMenu.Jump_2:
-        //        if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Jump_2))
-        //            enemyStateMachine.ChangeState(enemy.jumpState,2);
-        //        return;
-        //    case CrystalAttackMenu.Skill_1:
-        //        if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Skill_1))
-        //            enemyStateMachine.ChangeState(enemy.skillState1);
-        //        return;
-        //    case CrystalAttackMenu.Skill_2:
-        //        if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Skill_2))
-        //            enemyStateMachine.ChangeState(enemy.skillState2);
-        //        return;
-        //}
+        /*        if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Jump_1))
+                    enemyStateMachine.ChangeState(enemy.jumpState, 1);
+                else
+                    enemyStateMachine.ChangeState(enemy.jumpState, 2);*/
+        switch (currentSkill)
+        {
+            case CrystalAttackMenu.Jump_1:
+                if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Jump_1))
+                    enemyStateMachine.ChangeState(enemy.jumpState, 1);
+                return;
+            case CrystalAttackMenu.Jump_2:
+                if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Jump_2))
+                    enemyStateMachine.ChangeState(enemy.jumpState, 2);
+                return;
+            case CrystalAttackMenu.Skill_1:
+                if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Skill_1))
+                    enemyStateMachine.ChangeState(enemy.skillState1);
+                return;
+            case CrystalAttackMenu.Skill_2:
+                if (!enemy.CheckIsOnCooldown(CrystalAttackMenu.Skill_2))
+                    enemyStateMachine.ChangeState(enemy.skillState2);
+                return;
+        }
     }
     private CrystalAttackMenu ReleaseRandomSkill()
     {

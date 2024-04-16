@@ -57,6 +57,7 @@ public class PlayerAirAttackState : PlayerAbilityState
 
 
                     player.SetVelocityY(0);
+                    CameraManager.instance.CameraShake(player.MyInpulse, 1.2f);
                     await UniTask.Delay(200);
                     player.SetVelocityY(-30);
                 }

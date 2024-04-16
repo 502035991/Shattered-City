@@ -43,7 +43,7 @@ public class CrystalSkillRock2Controller : MonoBehaviour
         if (player != null && !Controlled)
         {
             Controlled = true;
-            //player.KnockBackUp(dir,5,7,0.5f);
+            player.KnockBack(10,dir,1,true);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

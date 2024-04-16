@@ -1,3 +1,4 @@
+using Cinemachine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
@@ -11,7 +12,8 @@ public class Player : Entity
     public PlayerStateMachine stateMachine {  get; private set; }
     public SkillManager skill {  get; private set; }
     private float startControlTime;
-    
+
+    public CinemachineImpulseSource MyInpulse;
     #region States
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
@@ -55,7 +57,9 @@ public class Player : Entity
     protected override void Start()
     {
         base.Start();
-        inputHandler = GetComponent<PlayerInputHandler>();
+        inputHandler = GetComponentInChildren<PlayerInputHandler>();
+
+        MyInpulse = GetComponent<CinemachineImpulseSource>();
         skill = SkillManager.instance;
         stateMachine.Initialize(idleState);
     }
@@ -86,6 +90,7 @@ public class Player : Entity
         if(!isControlled)
         {          
             SetFlip(-enemyDir);
+            RB.gravityScale = 3.5f;
             var velocity = CalculateVelocity(knockbackDis, enemyDir, duration);
             //RB.AddForce(velocity, ForceMode2D.Impulse);
             SetVelocity(velocity);
@@ -155,7 +160,6 @@ public class Player : Entity
                 .OnComplete(() => SetControlStats(false));
         }
     }*/
-
     public void SetControl()
     {
         isControlled = true;

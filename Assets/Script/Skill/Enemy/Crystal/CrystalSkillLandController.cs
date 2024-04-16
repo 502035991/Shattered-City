@@ -6,13 +6,13 @@ using UnityEngine;
 public class CrystalSkillLandController : MonoBehaviour
 {
     private Player player;
-    private Action<bool> attackedPlayer;
+    private Action attackedPlayer;
 
     private bool Controlled;
 
     private float duration;
     private float startTime;
-    public void Init(float duration,Vector2 pos , Action<bool> ac)
+    public void Init(float duration,Vector2 pos , Action ac)
     {
         transform.position = pos;
         attackedPlayer = ac;
@@ -24,16 +24,14 @@ public class CrystalSkillLandController : MonoBehaviour
     }
     private void Update()
     {
-
         if (Time.time < startTime + duration)
         {
-/*            if (Controlled && player != null && player.CanBeHurt)
+            if (Controlled && player != null)
             {
-                attackedPlayer?.Invoke(true);
+                attackedPlayer?.Invoke();
                 Controlled = false;
-            }*/
+            }
         }
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
