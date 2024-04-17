@@ -17,7 +17,7 @@ public class Skill : MonoBehaviour
         if(cooldownTimer < 0)
         {
             cooldownTimer = colldown;
-            UseSkill();
+            //UseSkill();
             return true;
         }
         return false;
@@ -26,5 +26,9 @@ public class Skill : MonoBehaviour
     public virtual void UseSkill()
     {
 
+    }
+    public float GetCoolDownNorm()
+    {
+       return cooldownTimer / colldown;
     }
 }

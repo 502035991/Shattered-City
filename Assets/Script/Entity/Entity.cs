@@ -134,6 +134,7 @@ public class Entity : MonoBehaviour
     }
     public void UseAttackState() => isAttacking = false;
     public void SetHurtState(bool value) => CanBeHurt = value;
+    public bool GetHurtState(){ return CanBeHurt; }
     public virtual void TakeDamageEffect()
     {
         //entityFX.FlashFX().Forget();

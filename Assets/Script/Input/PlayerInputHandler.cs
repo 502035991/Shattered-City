@@ -13,6 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool jumpInput { get; private set; }
     public bool isAir {  get; private set; }
     public bool isDash {  get; private set; }
+    public bool isDashed {  get; private set; }
     public bool isAttack {  get; private set; }
     public bool isAirAttack {  get; private set; }
 
@@ -44,6 +45,11 @@ public class PlayerInputHandler : MonoBehaviour
          if (context.started && SkillManager.instance.dash.CanUseSkill())
         { 
             isDash = true;
+            isDashed = true;
+        }
+         else if(context.canceled)
+        {
+            isDash = false;
         }
     }
     public void OnNormalAttack(InputAction.CallbackContext context)
@@ -101,7 +107,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void ClearMovementInput() => movementInput = Vector2.zero;
 
     public void UseJumpInput() => jumpInput = false;
-    public void UseDashInput() => isDash = false;
+    public void UseDashInput() => isDashed = false;
     public void UseAttackInput() => isAttack = false;
     public void UseAirAttackInput () => isAirAttack = false;
 

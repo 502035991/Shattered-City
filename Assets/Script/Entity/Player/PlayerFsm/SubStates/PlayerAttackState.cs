@@ -63,10 +63,10 @@ public class PlayerAttackState : PlayerAbilityState
                 Enemy target = item.GetComponent<Enemy>();
                 if (target != null)
                 {
-
+                    CameraManager.instance.CameraShake(player.MyInpulse, 0.25f);
                     if (normalAttackConter == 0)
                     {
-                        player.stats.DoDamage(target.stats ,1);
+                        player.stats.DoDamage(target.stats ,1);                        
                         target.KnockBack(Vector2.zero, 0 ,0.3f).Forget();//Íæ¼Ò¹¥»÷1
                     }
                     else if (normalAttackConter == 1)

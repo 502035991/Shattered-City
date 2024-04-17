@@ -52,6 +52,7 @@ public class Crystal_JumpState : Crystal_AbilityState
     {
         Vector2 rbVelocity;
         CalculateMaxHeightToVelocity(Physics2D.gravity * gravity, jumpDuration, out rbVelocity);
+
         enemy.RB.gravityScale = gravity;
         //enemy.SetVelocity(rbVelocity);
         enemy.RB.AddForce(rbVelocity, ForceMode2D.Impulse);

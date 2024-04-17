@@ -43,6 +43,7 @@ public class CrystalSkillRock2Controller : MonoBehaviour
         if (player != null && !Controlled)
         {
             Controlled = true;
+            CameraManager.instance.CameraShake(player.MyInpulse, 4f);
             player.KnockBack(10,dir,1,true);
         }
     }

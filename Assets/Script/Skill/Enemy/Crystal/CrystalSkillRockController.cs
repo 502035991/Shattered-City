@@ -92,7 +92,8 @@ public class CrystalSkillRockController : MonoBehaviour
             if (collider == null)
                 return;
             player = collider.GetComponent<Player>();
-            player.KnockBack(5, dir, 0.5f , true);            
+            player.KnockBack(5, dir, 0.5f , true);
+            CameraManager.instance.CameraShake(player.MyInpulse, 4f);
         }
     }
     public void AnimtaionFinishTrigger()

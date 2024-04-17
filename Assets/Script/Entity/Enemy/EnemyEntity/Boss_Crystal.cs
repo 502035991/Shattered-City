@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public enum CrystalAttackMenu
 {
@@ -33,6 +34,7 @@ public class Boss_Crystal : Enemy
     public Phase currentPhase {  get; private set; }
     public Transform skillRockPos;
     public Transform skillLandPos;
+    public PlayableDirector changePhaseTimeLine;
 
     [SerializeField]
     private Vector3 baseAttackSize_2;
